@@ -14,7 +14,7 @@ unsigned int taus()
 
 void set_taus_seed() 
 {
-  s0 = (unsigned int)time(NULL);// 0x1e23d852;
-  s1 = (unsigned int)time(NULL); //0x81f38a1c;
-  s2 = (unsigned int)time(NULL); //0xfe1a133e;
+  s0 = 0x1e23d852;
+  s1 = 0x81f38a1c;
+  s2 = 0xfe1a133e;
 }

@@ -345,7 +345,7 @@ void QAM_input(struct complex *data,double amp,int N,int Nu,char M) {
 
       case 0 :   // QPSK
         data[(i+FCO)%N].r = ((rv&1) ? -amp : amp)/sqrt(2.0);
-        data[(i+FCO)%N].r = (((rv>>1)&1) ? -amp : amp)/sqrt(2.0);
+        data[(i+FCO)%N].i = (((rv>>1)&1) ? -amp : amp)/sqrt(2.0);
         break;
       case 1 :   // 16QAM 
         data[(i+FCO)%N].r = (2*(rv&3) - 3)*amp/sqrt(10);
@@ -372,6 +372,8 @@ void fft_distortion_test(int N,         // dimension of FFT under test
 {
   double mean_in=0.0, mean_error=0.0, SNR, D;
   int i;
+  char file_name[256];
+  FILE *fp;
 
   for (i=0; i<N; i++)
   {
@@ -383,11 +385,13 @@ void fft_distortion_test(int N,         // dimension of FFT under test
     data32[i].i=0;
   }
 
+  set_taus_seed();
+  
   switch (test) {
     //*0.05 = 1/20
     case 0:       /** Generate cosine **/
       for (i=0; i<N; i++)
-        data[i].r=pow(10,.05*input_dB)*cos(2.0*PI*.1*i)*sqrt(2);
+        data[i].r=pow(10,.05*input_dB)*cos(2.0*PI*0.015625*i)*sqrt(2);
       break;
 
     case 1:    // QPSK
@@ -410,6 +414,7 @@ void fft_distortion_test(int N,         // dimension of FFT under test
     data32[i].i = (int32_t)(data[i].i*((1<<24)-1));
   }
 
+
   // Do Floating-point FFT
   radix4(data, N);
   for (i=0;i<N;i++)
@@ -419,19 +424,14 @@ void fft_distortion_test(int N,         // dimension of FFT under test
   }
   bit_r4_reorder(data, N);
 
+  // Do Q15 FFT
+  radix4_fixed_Q15(data16, N,scale,0);
+  bit_r4_reorder_fixed_Q15(data16, N,scale[6]);
+
+  // Do Q24x17 FFT
+  radix4_fixed_Q24xQ17(data32, N, scale, 0);
+  bit_r4_reorder_fixed_Q17(data32, N, scale[6]);
   
-  if(data_t == 16)
-  {
-    // Do Q15 FFT
-    radix4_fixed_Q15(data16, N,scale,0);
-    bit_r4_reorder_fixed_Q15(data16, N,scale[6]);
-  }
-  else
-  {
-    // Do Q24x17 FFT
-    radix4_fixed_Q24xQ17(data32, N, scale, 0);
-    bit_r4_reorder_fixed_Q17(data32, N, scale[6]);
-  }
 
   // Compute Distortion statistics
   mean_error = 0.0;
@@ -451,7 +451,8 @@ void fft_distortion_test(int N,         // dimension of FFT under test
   SNR = 10*log10(mean_in/mean_error);
   D = 10*log10(mean_error/N);
   //printf("%d %d %d %d %d %d %d : SNR=%f D=%f\n",scale[0],scale[1],scale[2],scale[3],scale[4],scale[5],scale[6],SNR,D);
-  if (SNR > *maxSNR) {
+  //
+  if (SNR >= *maxSNR) {
     *maxSNR = SNR;
     memcpy(maxscale,scale,7);
   }
@@ -463,7 +464,7 @@ void fft_distortion_test(int N,         // dimension of FFT under test
 #define SCALE1024 0x0056
 #define SCALE4096 0x0156
 
-void main(int argc, char *argv[])
+int main(int argc, char *argv[])
 {
 
   int    N, radix=4, test, data_t;
@@ -610,5 +611,12 @@ void main(int argc, char *argv[])
         break;
     }
   }
+
+  free(data);
+  free(data16);
+  free(data32);
+
+  return 0;
 }
 
+
