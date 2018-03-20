@@ -1,0 +1,7 @@
+set terminal wxt size 1800,900
+set multiplot layout 1,2 rowsfirst
+
+filename = "results/out_".ARG1.".txt"
+
+plot filename using 1:2 w lines ls 1, filename using 1:5 w lines ls 3
+plot filename using 1:8 w lines ls 2
