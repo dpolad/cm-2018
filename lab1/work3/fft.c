@@ -391,7 +391,7 @@ void fft_distortion_test(int N,         // dimension of FFT under test
     //*0.05 = 1/20
     case 0:       /** Generate cosine **/
       for (i=0; i<N; i++)
-        data[i].r=pow(10,.05*input_dB)*cos(2.0*PI*0.015625*i)*sqrt(2);
+        data[i].r=pow(10,.05*input_dB)*cos(2.0*PI*0.1*i)*sqrt(2);
       break;
 
     case 1:    // QPSK
@@ -455,6 +455,14 @@ void fft_distortion_test(int N,         // dimension of FFT under test
   if (SNR >= *maxSNR) {
     *maxSNR = SNR;
     memcpy(maxscale,scale,7);
+    char filename[20];
+    sprintf(filename, "results/out_%d.txt", (int)-input_dB);
+    fp = fopen(filename, "w");// "w" means that we are going to write on this file
+    fprintf(fp,"#int double real img\n");
+    for (i=0;i<N;i++) {
+    	fprintf(fp,"%d %.10f %.10f %.10f\n ",i,data[i].r*data[i].r + data[i].i*data[i].i,data[i].r,data[i].i);
+    }
+
   }
 
 }
