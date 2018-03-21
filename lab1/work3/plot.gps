@@ -1,0 +1,4 @@
+set terminal wxt size 1800,900
+
+plot ARG1 using 1:2 w lines ls 1, \
+plot ARG1 using 1:3 w lines ls 2
