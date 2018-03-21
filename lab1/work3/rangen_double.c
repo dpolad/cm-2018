@@ -4,6 +4,7 @@
 #include <time.h>
 #include "rangen_double.h"
 
+
 void randominit()
 {
   int i;
@@ -11,7 +12,7 @@ void randominit()
 
   srand((unsigned)time(NULL));
 
-  seed = (unsigned long) rand();
+  seed = (unsigned int) rand();
   if (seed % 2 == 0) seed += 1; /* seed and mod are relative prime */
   for (i=1; i<=97; i++)
   {
@@ -48,6 +49,7 @@ double gaussdouble(double mean, double variance)
            v1 = 2.0*uniformrandom()-1.0;
            v2 = 2.0*uniformrandom()-1.0;
            r = v1*v1+v2*v2;
+           printf("%f %f %f\n", r,v1,v2);
         }  while (r >= 1.0);
      fac = sqrt(-2.0*log(r)/r);
      gset= v1*fac;
@@ -58,17 +60,3 @@ double gaussdouble(double mean, double variance)
      return(sqrt(variance)*gset + mean);
   }
 }
-
-
-#ifdef MAIN
-main(int argc,char **argv) {
-
-  int i;
-
-  randominit();
-  for (i=0;i<10;i++) {
-    printf("%f\n",gaussdouble(0.0,1.0));
-  }
-}
-#endif
-

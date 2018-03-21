@@ -1,7 +1,7 @@
 #define a 1664525lu
 #define mod 4294967296.0                /* is 2**32 */
 
-static unsigned long seed, iy, ir[98];
+static unsigned int seed, iy, ir[98];
 
 /*
 @defgroup _uniformdouble 

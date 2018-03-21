@@ -387,14 +387,11 @@ void fft_distortion_test(int N,         // dimension of FFT under test
 
   set_taus_seed();
   
-    fp2 = fopen("inputfile.txt", "w");
-    fprintf(fp2,"#x y\n");
   switch (test) {
     //*0.05 = 1/20
     case 0:       /** Generate cosine **/
       for (i=0; i<N; i++){
         data[i].r=pow(10,.05*input_dB)*cos(2.0*PI*0.062625*i)*sqrt(2);
-    	fprintf(fp2,"%d %.10f\n",i,data[i].r);
       }
       break;
 
@@ -404,19 +401,30 @@ void fft_distortion_test(int N,         // dimension of FFT under test
 
     case 2:    // 16-QAM
       QAM_input(data,pow(10,.05*input_dB),N,N,1);
+
+    case 3:    // 16-QAM
+    //  for (i=0; i<N; i++){
+    //      while
+    //      rv=gaussdouble(0.0,1.0);
+
+     //   data[i].r=pow(10,.05*input_dB)*cos(2.0*PI*0.062625*i)*sqrt(2);
+      //}
+      break;
+
       break;
 
     default:
       break;
   }
-  fclose(fp2);
 
   // Make fixed-point versions of data
   for (i=0;i<N;i++) {
     data16[i].r = (int16_t)(data[i].r*32767);
     data16[i].i = (int16_t)(data[i].i*32767);
-    data32[i].r = (int32_t)(data[i].r*((1<<24)-1));
-    data32[i].i = (int32_t)(data[i].i*((1<<24)-1));
+    data32[i].r = (int32_t)(data[i].r*32767);
+    data32[i].i = (int32_t)(data[i].i*32767);
+    data32[i].r <<= 9;
+    data32[i].i <<= 9;
   }
 
 
@@ -424,8 +432,8 @@ void fft_distortion_test(int N,         // dimension of FFT under test
   radix4(data, N);
   for (i=0;i<N;i++)
   {
-    data[i].r /= (N);
-    data[i].i /= (N);
+    data[i].r /= sqrt(N);
+    data[i].i /= sqrt(N);
   }
   bit_r4_reorder(data, N);
 
@@ -455,8 +463,9 @@ void fft_distortion_test(int N,         // dimension of FFT under test
 
   SNR = 10*log10(mean_in/mean_error);
   D = 10*log10(mean_error/N);
+
   //printf("%d %d %d %d %d %d %d : SNR=%f D=%f\n",scale[0],scale[1],scale[2],scale[3],scale[4],scale[5],scale[6],SNR,D);
-  //
+
   if (SNR >= *maxSNR) {
     *maxSNR = SNR;
     memcpy(maxscale,scale,7);
@@ -583,9 +592,9 @@ int main(int argc, char *argv[])
                   for (scale[5]=0;scale[5]<=MAXSHIFT-scale[0]-scale[1]-scale[2]-scale[3]-scale[4];scale[5]++)
                   {
                     scale[6]=MAXSHIFT-scale[0]-scale[1]-scale[2]-scale[3]-scale[4]-scale[5];
-		for(i=0;i<7;i++) scale[i]*=2;
+//		for(i=0;i<7;i++) scale[i]*=2;
                     fft_distortion_test(N,test,input_dB,scale,&maxSNR,maxscale,data,data16,data32,data_t);
-		for(i=0;i<7;i++) scale[i]/=2;
+//		for(i=0;i<7;i++) scale[i]/=2;
                   }
 
         printf("%f;%f;%% Optimum Scaling : %d %d %d %d %d %d %d\n",
@@ -600,9 +609,9 @@ int main(int argc, char *argv[])
                 for (scale[4]=0;scale[4]<=MAXSHIFT-scale[0]-scale[1]-scale[2]-scale[3];scale[4]++)
                 {
                   scale[6]=MAXSHIFT-scale[0]-scale[1]-scale[2]-scale[3]-scale[4];
-		for(i=0;i<7;i++) scale[i]*=2;
-                  fft_distortion_test(N,test,input_dB,scale,&maxSNR,maxscale,data,data16,data32,data_t);
-		for(i=0;i<7;i++) scale[i]/=2;
+//		for(i=0;i<7;i++) scale[i]*=2;
+                 fft_distortion_test(N,test,input_dB,scale,&maxSNR,maxscale,data,data16,data32,data_t);
+//		for(i=0;i<7;i++) scale[i]/=2;
                 }
         printf("%f;%f;%% Optimum Scaling : %d %d %d %d %d %d %d\n",
                 input_dB,maxSNR,maxscale[0],maxscale[1],maxscale[2],maxscale[3],maxscale[4],maxscale[5],maxscale[6]);
@@ -615,9 +624,9 @@ int main(int argc, char *argv[])
               for (scale[3]=0;scale[3]<=MAXSHIFT-scale[0]-scale[1]-scale[2];scale[3]++) 
               {
                 scale[6]=MAXSHIFT-scale[0]-scale[1]-scale[2]-scale[3];
-		for(i=0;i<7;i++) scale[i]*=2;
+//		for(i=0;i<7;i++) scale[i]*=2;
                 fft_distortion_test(N,test,input_dB,scale,&maxSNR,maxscale,data,data16,data32,data_t);
-		for(i=0;i<7;i++) scale[i]/=2;
+//		for(i=0;i<7;i++) scale[i]/=2;
               }
         printf("%f;%f;%% Optimum Scaling : %d %d %d %d %d %d %d\n",
                 input_dB,maxSNR,maxscale[0],maxscale[1],maxscale[2],maxscale[3],maxscale[4],maxscale[5],maxscale[6]);
@@ -629,9 +638,9 @@ int main(int argc, char *argv[])
             for (scale[2]=0;scale[2]<=MAXSHIFT-scale[0]-scale[1];scale[2]++) 
             {
               scale[6]=MAXSHIFT-scale[0]-scale[1]-scale[2];
-		for(i=0;i<7;i++) scale[i]*=2;
+//		for(i=0;i<7;i++) scale[i]*=2;
               fft_distortion_test(N,test,input_dB,scale,&maxSNR,maxscale,data,data16,data32,data_t);
-		for(i=0;i<7;i++) scale[i]/=2;
+//		for(i=0;i<7;i++) scale[i]/=2;
             }
         printf("%f;%f;%% Optimum Scaling : %d %d %d %d %d %d %d\n",
                 input_dB,maxSNR,maxscale[0],maxscale[1],maxscale[2],maxscale[3],maxscale[4],maxscale[5],maxscale[6]);

@@ -14,21 +14,21 @@
 //Saturated addition for Q15
 int16_t SAT_ADD16(int16_t x,int16_t y) {
 
-  if ((int32_t)x + (int32_t)y > 32767)
-    return(32767);
-  else if ((int32_t)x + (int32_t)y < -32767)
-    return(-32768);
-  else
-    return(x+y);
+    if ((int32_t)x + (int32_t)y > 32767)
+        return(32767);
+    else if ((int32_t)x + (int32_t)y < -32767)
+        return(-32768);
+    else
+        return(x+y);
 }
 
 //Saturated addition for Q24
 int32_t SAT_ADD25(int32_t x,int32_t y) {
 
-  if ((int32_t)x + (int32_t)y > (1<<24)-1)
-    return((1<<24)-1);
-  else if ((int32_t)x + (int32_t)y < -(1<<24))
-    return(-(1<<24));
-  else
-    return(x+y);
+    if ((int32_t)x + (int32_t)y > (1<<24)-1)
+        return((1<<24)-1);
+    else if ((int32_t)x + (int32_t)y < -(1<<24))
+        return(-(1<<24));
+    else
+        return(x+y);
 }
