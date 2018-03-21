@@ -22,3 +22,4 @@ unsigned int s0, s1, s2, b;
 unsigned int taus();
 
 void set_taus_seed();
+void set_taus_rand();

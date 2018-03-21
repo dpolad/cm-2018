@@ -1,5 +1,7 @@
-#include <time.h>
+#include <sys/time.h>
 #include "taus.h"
+#include <stdlib.h>
+#include <stdio.h>
 
 unsigned int taus()
 {  
@@ -17,4 +19,14 @@ void set_taus_seed()
   s0 = 0x1e23d852;
   s1 = 0x81f38a1c;
   s2 = 0xfe1a133e;
+}
+
+void set_taus_rand() 
+{
+    struct timeval t1;
+    gettimeofday(&t1, NULL);
+    srand(t1.tv_usec * t1.tv_sec);
+    s0 = (unsigned int)rand();
+    s1 = (unsigned int)rand();
+    s2 = (unsigned int)rand();
 }

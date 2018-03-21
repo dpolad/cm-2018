@@ -386,7 +386,6 @@ void fft_distortion_test(int N,         // dimension of FFT under test
     data32[i].i=0;
   }
 
-  set_taus_seed();
   
   switch (test) {
     //*0.05 = 1/20
@@ -590,6 +589,7 @@ int main(int argc, char *argv[])
       scale[i] = 0;
 
     maxSNR = -1000;
+    set_taus_rand();
     
 
     switch (N) 
