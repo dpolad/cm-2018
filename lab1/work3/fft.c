@@ -421,8 +421,6 @@ void fft_distortion_test(int N,         // dimension of FFT under test
   for (i=0;i<N;i++) {
     data16[i].r = (int16_t)(data[i].r*32767);
     data16[i].i = (int16_t)(data[i].i*32767);
-    data32[i].r <<= shift;
-    data32[i].i <<= shift;
     data32[i].r = (int32_t)(data[i].r*32767);
     data32[i].i = (int32_t)(data[i].i*32767);
     data32[i].r <<= shift;
@@ -459,7 +457,7 @@ void fft_distortion_test(int N,         // dimension of FFT under test
     }
     else
     {
-      mean_error += pow((data[i].r-((double)data32[i].r/((1<<15+shift)-1))),2) + pow((data[i].i-((double)data32[i].i/((1<<15+shift)-1))),2);
+      mean_error += pow((data[i].r-((double)(data32[i].r>>shift)/32767.0)),2) + pow((data[i].i-((double)(data32[i].i>>shift)/32767.0)),2);
     }
   }
 
@@ -480,8 +478,12 @@ void fft_distortion_test(int N,         // dimension of FFT under test
 	    double ddata16r = ((double)data16[i].r/32767.0);
 	    double ddata16i = ((double)data16[i].i/32767.0);
 	    double av16 = ddata16r*ddata16r+ddata16i*ddata16i;
-	    double error = pow((data[i].r-ddata16r),2) + pow((data[i].i-ddata16i),2);
-    	fprintf(fp,"%d %.10f %.10f %.10f %.10f %.10f %.10f %.10f\n",i,avdouble,data[i].r,data[i].i,av16,ddata16r,ddata16i,error);
+	    double error16 = pow((data[i].r-ddata16r),2) + pow((data[i].i-ddata16i),2);
+	    double ddata32r = ((double)data32[i].r/32767.0);
+	    double ddata32i = ((double)data32[i].i/32767.0);
+	    double av32 = ddata32r*ddata32r+ddata32i*ddata32i;
+	    double error32 = pow((data[i].r-ddata32r),2) + pow((data[i].i-ddata32i),2);
+    	fprintf(fp,"%d %.10f %.10f %.10f %.10f %.10f %.10f %.10f\n",i,avdouble,data[i].r,data[i].i,av16,ddata16r,ddata16i,error16);
     }
     fclose(fp);
 
