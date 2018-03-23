@@ -12,6 +12,10 @@
 \usepackage{amsmath}
 \usepackage{graphicx}
 \usepackage{listings}
+
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+
 \usepackage[colorinlistoftodos]{todonotes}
 \usepackage[colorlinks=true, allcolors=blue]{hyperref}
 \usepackage{xfrac}
@@ -34,40 +38,93 @@ The functions developed are able to compute the FFT of a given signal, changing 
 \section{Code Explanation}
 \subsection{taus.c}
 The purpose of this file is to generate random variable starting from a seed. This seed could be either fixed or a randomly generated value.
+\paragraph{modifications:}
+As it was, the seed was generated from the current system time, down to a precision of 1 second. This is not exactly good as two consecutive simulations could run in less than one second and, as a consequence, show some correlation. This is the reason why now the random seed is initialized down to a precision of 1 microsecond.
+Also, in order to have a full deterministic behavior, another initialization function is able to set the seed to a fixed value.
 
 \subsection{rangen\_double.c}
 This is used to generated normally distributed random value trough the function \textit{gaussdouble}.
+\paragraph{modifications:}
+This piece of code was originally not working because it was developed for a 32-bit machine. Fixing the data types solved this issue.
 
 \subsection{complex.h}
 This file contains the definitions of data types used in the entire project. These can be double precision floating point numbers, 32-bit integers or 16-bit integers.
+\paragraph{modifications:}
+Like the previous file, this was not fully portable too, due to machine-dependent data types. Setting \textit{int32\_t} and \textit{int16\_t} should fix this portability issue. 
 
 \subsection{fixed\_point.c}
-Here we define the functions used to compute fixed point saturated addition and multiplication. these functions are available both in a 16-bit and 25-bit version.
+Here we define the functions used to compute fixed point saturated addition and multiplication. These functions are available both in a 16-bit and 25-bit version.
+\paragraph{modifications:}
+Nothing was changed here with the exception of data types.
 
 \subsection{fft.c}
 This is the main core of the application, where all the processing of the FFT is done. Each function will be separately covered in this section.
 
-\subsubsection{twiddle factor}
+
+\subsubsection{Twiddle factor}
 The functions:
 \begin{itemize}
 \item void twiddle(struct complex *W, int N, double stuff)
 \item void twiddle\_fixed(struct complex16 *W, int N, double stuff)         
 \item void twiddle\_fixed\_Q17(struct complex32 *W, int N, double stuff)
 \end{itemize}
+Are used to compute the twiddle factor. As the prototype indicates, each function is required whether we are using floating points, Q15 or Q24 representations.\\
+Following these formula, it's straightforward to understand the computations done in this function and the role of the \textit{stuff} parameter.
+$$X_k = \frac{1}{\sqrt{N}}\sum_{n=0}^{N-1} x_k W_N^{kn} $$
+$$W_N^{kn} = e^{\frac{-j2\pi kn}{N}} = \cos{(2\pi kn)} - j\sin{(2\pi kn)}$$
+$$\mathit{stuff} = kn$$
 
-Are used to computed the twiddle factor. The parameter stuff is INSERT HERE. As the prototype indicates, each function is required whether we are using floating points, Q15 or Q24 representations.
 
-\subsubsection{radix coefficients reordering}
+\subsubsection{Coefficients reordering}
+The following functions are needed because after the computation of the radix 4 FFT butterfly, the coefficients are shuffled in a precise pattern.
 Again there are three functions used depending on the data type:
 \begin{itemize}
 	\item bit\_r4\_reorder(struct complex *W, int N)
 	\item bit\_r4\_reorder\_fixed\_Q15(struct complex16 *W, int N)
 	\item bit\_r4\_reorder\_fixed\_Q24(struct complex32 *W, int N)
 \end{itemize}
-These functions are needed because after the computation of the radix 4 fft butterfly, the coefficients are shuffled in a precise pattern.
 
-\subsubsection{radix 4 }
-This is the core function where the FFT coefficients are actually calculated. The function is recursive, and calls itself back until only one butterfly is left, every time cutting the number of iterations by \sfrac{1}{4} (here comes the radix 4).
+
+
+
+
+
+\tikzstyle{n}= [circle, fill, minimum size=4pt,inner sep=0pt, outer sep=0pt]
+\tikzstyle{mul} = [circle,draw,inner sep=-1pt]
+
+% Define two helper counters
+\newcounter{x}\newcounter{y}
+\begin{tikzpicture}[yscale=0.5, xscale=1.2, node distance=0.4cm, auto]
+	% The strategy is to create nodes with names: N-column-row
+	% Input nodes are named N-0-0 ... N-0-15
+	% Output nodes are named N-10-0 ... N-10-15
+	
+	% Draw inputs
+	\foreach \y in {0,...,3}
+		\node[n, pin={[pin edge={latex'-,black}]left:$x(\y)$}]
+			(N-0-\y) at (0,-\y) {};
+	% Draw outputs
+	\foreach \y / \idx in {	0/3,1/2,2/1,3/0}
+		\node[n, pin={[pin edge={-latex',black}]right:$X(\idx)$}]
+			(N-5-\y) at (4,-\y) {};
+			
+	\foreach \sourcey / \desty in {0/3,1/2,2/1,3/0}
+	\path (N-0-\sourcey.east) edge[-] (N-5-\desty.west);
+\end{tikzpicture}
+
+
+
+
+
+
+
+
+
+
+
+
+\subsubsection{Radix 4 }
+This is the core function where the FFT coefficients are actually calculated. The function is recursive, and calls itself back until no more splitting is possible( when there is only one butterfly left), every time cutting the number of iterations by \sfrac{1}{4}.
 \begin{itemize}
 	\item radix4(struct complex *x, int N)
 	\item TODO
