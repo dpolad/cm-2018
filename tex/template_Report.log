@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2018.3.22)  22 MAR 2018 11:23
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2018.3.22)  23 MAR 2018 16:27
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -623,24 +623,304 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 \Hy@SectionHShift=\skip49
 )
+(/opt/texlive/2017/texmf-dist/tex/latex/l3packages/xfrac/xfrac.sty
+(/opt/texlive/2017/texmf-dist/tex/latex/l3kernel/expl3.sty
+Package: expl3 2018/02/21 L3 programming layer (loader) 
+
+(/opt/texlive/2017/texmf-dist/tex/latex/l3kernel/expl3-code.tex
+Package: expl3 2018/02/21 L3 programming layer (code)
+\c_max_int=\count147
+\l_tmpa_int=\count148
+\l_tmpb_int=\count149
+\g_tmpa_int=\count150
+\g_tmpb_int=\count151
+\g__intarray_font_int=\count152
+\g__prg_map_int=\count153
+\c_log_iow=\count154
+\l_iow_line_count_int=\count155
+\l__iow_line_target_int=\count156
+\l__iow_one_indent_int=\count157
+\l__iow_indent_int=\count158
+\c_zero_dim=\dimen179
+\c_max_dim=\dimen180
+\l_tmpa_dim=\dimen181
+\l_tmpb_dim=\dimen182
+\g_tmpa_dim=\dimen183
+\g_tmpb_dim=\dimen184
+\c_zero_skip=\skip50
+\c_max_skip=\skip51
+\l_tmpa_skip=\skip52
+\l_tmpb_skip=\skip53
+\g_tmpa_skip=\skip54
+\g_tmpb_skip=\skip55
+\c_zero_muskip=\muskip12
+\c_max_muskip=\muskip13
+\l_tmpa_muskip=\muskip14
+\l_tmpb_muskip=\muskip15
+\g_tmpa_muskip=\muskip16
+\g_tmpb_muskip=\muskip17
+\l_keys_choice_int=\count159
+\c__fp_leading_shift_int=\count160
+\c__fp_middle_shift_int=\count161
+\c__fp_trailing_shift_int=\count162
+\c__fp_big_leading_shift_int=\count163
+\c__fp_big_middle_shift_int=\count164
+\c__fp_big_trailing_shift_int=\count165
+\c__fp_Bigg_leading_shift_int=\count166
+\c__fp_Bigg_middle_shift_int=\count167
+\c__fp_Bigg_trailing_shift_int=\count168
+\c__fp_rand_size_int=\count169
+\c__fp_rand_four_int=\count170
+\c__fp_rand_eight_int=\count171
+\l__sort_length_int=\count172
+\l__sort_min_int=\count173
+\l__sort_top_int=\count174
+\l__sort_max_int=\count175
+\l__sort_true_max_int=\count176
+\l__sort_block_int=\count177
+\l__sort_begin_int=\count178
+\l__sort_end_int=\count179
+\l__sort_A_int=\count180
+\l__sort_B_int=\count181
+\l__sort_C_int=\count182
+\l__tl_build_start_index_int=\count183
+\l__tl_build_index_int=\count184
+\l__tl_analysis_normal_int=\count185
+\l__tl_analysis_index_int=\count186
+\l__tl_analysis_nesting_int=\count187
+\l__tl_analysis_type_int=\count188
+\l__regex_internal_a_int=\count189
+\l__regex_internal_b_int=\count190
+\l__regex_internal_c_int=\count191
+\l__regex_balance_int=\count192
+\l__regex_group_level_int=\count193
+\l__regex_mode_int=\count194
+\c__regex_cs_in_class_mode_int=\count195
+\c__regex_cs_mode_int=\count196
+\l__regex_catcodes_int=\count197
+\l__regex_default_catcodes_int=\count198
+\c__regex_catcode_D_int=\count199
+\c__regex_catcode_S_int=\count266
+\c__regex_catcode_L_int=\count267
+\c__regex_catcode_O_int=\count268
+\c__regex_catcode_A_int=\count269
+\c__regex_all_catcodes_int=\count270
+\l__regex_show_lines_int=\count271
+\l__regex_min_state_int=\count272
+\l__regex_max_state_int=\count273
+\l__regex_left_state_int=\count274
+\l__regex_right_state_int=\count275
+\l__regex_capturing_group_int=\count276
+\l__regex_min_pos_int=\count277
+\l__regex_max_pos_int=\count278
+\l__regex_curr_pos_int=\count279
+\l__regex_start_pos_int=\count280
+\l__regex_success_pos_int=\count281
+\l__regex_curr_char_int=\count282
+\l__regex_curr_catcode_int=\count283
+\l__regex_last_char_int=\count284
+\l__regex_case_changed_char_int=\count285
+\l__regex_curr_state_int=\count286
+\l__regex_step_int=\count287
+\l__regex_min_active_int=\count288
+\l__regex_max_active_int=\count289
+\l__regex_replacement_csnames_int=\count290
+\l__regex_match_count_int=\count291
+\l__regex_min_submatch_int=\count292
+\l__regex_submatch_int=\count293
+\l__regex_zeroth_submatch_int=\count294
+\g__regex_trace_regex_int=\count295
+\c_empty_box=\box41
+\l_tmpa_box=\box42
+\l_tmpb_box=\box43
+\g_tmpa_box=\box44
+\g_tmpb_box=\box45
+\l__box_top_dim=\dimen185
+\l__box_bottom_dim=\dimen186
+\l__box_left_dim=\dimen187
+\l__box_right_dim=\dimen188
+\l__box_top_new_dim=\dimen189
+\l__box_bottom_new_dim=\dimen190
+\l__box_left_new_dim=\dimen191
+\l__box_right_new_dim=\dimen192
+\l__box_internal_box=\box46
+\l__coffin_internal_box=\box47
+\l__coffin_internal_dim=\dimen193
+\l__coffin_offset_x_dim=\dimen194
+\l__coffin_offset_y_dim=\dimen195
+\l__coffin_x_dim=\dimen196
+\l__coffin_y_dim=\dimen197
+\l__coffin_x_prime_dim=\dimen198
+\l__coffin_y_prime_dim=\dimen199
+\c_empty_coffin=\box48
+\l__coffin_aligned_coffin=\box49
+\l__coffin_aligned_internal_coffin=\box50
+\l_tmpa_coffin=\box51
+\l_tmpb_coffin=\box52
+\l__coffin_display_coffin=\box53
+\l__coffin_display_coord_coffin=\box54
+\l__coffin_display_pole_coffin=\box55
+\l__coffin_display_offset_dim=\dimen256
+\l__coffin_display_x_dim=\dimen257
+\l__coffin_display_y_dim=\dimen258
+\l__coffin_bounding_shift_dim=\dimen259
+\l__coffin_left_corner_dim=\dimen260
+\l__coffin_right_corner_dim=\dimen261
+\l__coffin_bottom_corner_dim=\dimen262
+\l__coffin_top_corner_dim=\dimen263
+\l__coffin_scaled_total_height_dim=\dimen264
+\l__coffin_scaled_width_dim=\dimen265
+)
+(/opt/texlive/2017/texmf-dist/tex/latex/l3kernel/l3pdfmode.def
+File: l3pdfmode.def 2017/03/18 v L3 Experimental driver: PDF mode
+\l__driver_color_stack_int=\count296
+\l__driver_tmp_box=\box56
+))
+(/opt/texlive/2017/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty
+Package: l3keys2e 2018/02/21 LaTeX2e option processing using LaTeX3 keys
+)
+(/opt/texlive/2017/texmf-dist/tex/latex/base/textcomp.sty
+Package: textcomp 2017/04/05 v2.0i Standard LaTeX package
+Package textcomp Info: Sub-encoding information:
+(textcomp)               5 = only ISO-Adobe without \textcurrency
+(textcomp)               4 = 5 + \texteuro
+(textcomp)               3 = 4 + \textohm
+(textcomp)               2 = 3 + \textestimated + \textcurrency
+(textcomp)               1 = TS1 - \textcircled - \t
+(textcomp)               0 = TS1 (full)
+(textcomp)             Font families with sub-encoding setting implement
+(textcomp)             only a restricted character set as indicated.
+(textcomp)             Family '?' is the default used for unknown fonts.
+(textcomp)             See the documentation for details.
+Package textcomp Info: Setting ? sub-encoding to TS1/1 on input line 79.
+
+(/opt/texlive/2017/texmf-dist/tex/latex/base/ts1enc.def
+File: ts1enc.def 2001/06/05 v3.0e (jk/car/fm) Standard LaTeX file
+)
+LaTeX Info: Redefining \oldstylenums on input line 334.
+Package textcomp Info: Setting cmr sub-encoding to TS1/0 on input line 349.
+Package textcomp Info: Setting cmss sub-encoding to TS1/0 on input line 350.
+Package textcomp Info: Setting cmtt sub-encoding to TS1/0 on input line 351.
+Package textcomp Info: Setting cmvtt sub-encoding to TS1/0 on input line 352.
+Package textcomp Info: Setting cmbr sub-encoding to TS1/0 on input line 353.
+Package textcomp Info: Setting cmtl sub-encoding to TS1/0 on input line 354.
+Package textcomp Info: Setting ccr sub-encoding to TS1/0 on input line 355.
+Package textcomp Info: Setting ptm sub-encoding to TS1/4 on input line 356.
+Package textcomp Info: Setting pcr sub-encoding to TS1/4 on input line 357.
+Package textcomp Info: Setting phv sub-encoding to TS1/4 on input line 358.
+Package textcomp Info: Setting ppl sub-encoding to TS1/3 on input line 359.
+Package textcomp Info: Setting pag sub-encoding to TS1/4 on input line 360.
+Package textcomp Info: Setting pbk sub-encoding to TS1/4 on input line 361.
+Package textcomp Info: Setting pnc sub-encoding to TS1/4 on input line 362.
+Package textcomp Info: Setting pzc sub-encoding to TS1/4 on input line 363.
+Package textcomp Info: Setting bch sub-encoding to TS1/4 on input line 364.
+Package textcomp Info: Setting put sub-encoding to TS1/5 on input line 365.
+Package textcomp Info: Setting uag sub-encoding to TS1/5 on input line 366.
+Package textcomp Info: Setting ugq sub-encoding to TS1/5 on input line 367.
+Package textcomp Info: Setting ul8 sub-encoding to TS1/4 on input line 368.
+Package textcomp Info: Setting ul9 sub-encoding to TS1/4 on input line 369.
+Package textcomp Info: Setting augie sub-encoding to TS1/5 on input line 370.
+Package textcomp Info: Setting dayrom sub-encoding to TS1/3 on input line 371.
+Package textcomp Info: Setting dayroms sub-encoding to TS1/3 on input line 372.
+
+Package textcomp Info: Setting pxr sub-encoding to TS1/0 on input line 373.
+Package textcomp Info: Setting pxss sub-encoding to TS1/0 on input line 374.
+Package textcomp Info: Setting pxtt sub-encoding to TS1/0 on input line 375.
+Package textcomp Info: Setting txr sub-encoding to TS1/0 on input line 376.
+Package textcomp Info: Setting txss sub-encoding to TS1/0 on input line 377.
+Package textcomp Info: Setting txtt sub-encoding to TS1/0 on input line 378.
+Package textcomp Info: Setting lmr sub-encoding to TS1/0 on input line 379.
+Package textcomp Info: Setting lmdh sub-encoding to TS1/0 on input line 380.
+Package textcomp Info: Setting lmss sub-encoding to TS1/0 on input line 381.
+Package textcomp Info: Setting lmssq sub-encoding to TS1/0 on input line 382.
+Package textcomp Info: Setting lmvtt sub-encoding to TS1/0 on input line 383.
+Package textcomp Info: Setting lmtt sub-encoding to TS1/0 on input line 384.
+Package textcomp Info: Setting qhv sub-encoding to TS1/0 on input line 385.
+Package textcomp Info: Setting qag sub-encoding to TS1/0 on input line 386.
+Package textcomp Info: Setting qbk sub-encoding to TS1/0 on input line 387.
+Package textcomp Info: Setting qcr sub-encoding to TS1/0 on input line 388.
+Package textcomp Info: Setting qcs sub-encoding to TS1/0 on input line 389.
+Package textcomp Info: Setting qpl sub-encoding to TS1/0 on input line 390.
+Package textcomp Info: Setting qtm sub-encoding to TS1/0 on input line 391.
+Package textcomp Info: Setting qzc sub-encoding to TS1/0 on input line 392.
+Package textcomp Info: Setting qhvc sub-encoding to TS1/0 on input line 393.
+Package textcomp Info: Setting futs sub-encoding to TS1/4 on input line 394.
+Package textcomp Info: Setting futx sub-encoding to TS1/4 on input line 395.
+Package textcomp Info: Setting futj sub-encoding to TS1/4 on input line 396.
+Package textcomp Info: Setting hlh sub-encoding to TS1/3 on input line 397.
+Package textcomp Info: Setting hls sub-encoding to TS1/3 on input line 398.
+Package textcomp Info: Setting hlst sub-encoding to TS1/3 on input line 399.
+Package textcomp Info: Setting hlct sub-encoding to TS1/5 on input line 400.
+Package textcomp Info: Setting hlx sub-encoding to TS1/5 on input line 401.
+Package textcomp Info: Setting hlce sub-encoding to TS1/5 on input line 402.
+Package textcomp Info: Setting hlcn sub-encoding to TS1/5 on input line 403.
+Package textcomp Info: Setting hlcw sub-encoding to TS1/5 on input line 404.
+Package textcomp Info: Setting hlcf sub-encoding to TS1/5 on input line 405.
+Package textcomp Info: Setting pplx sub-encoding to TS1/3 on input line 406.
+Package textcomp Info: Setting pplj sub-encoding to TS1/3 on input line 407.
+Package textcomp Info: Setting ptmx sub-encoding to TS1/4 on input line 408.
+Package textcomp Info: Setting ptmj sub-encoding to TS1/4 on input line 409.
+)
+(/opt/texlive/2017/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
+Package: xparse 2018/02/21 L3 Experimental document command parser
+\l__xparse_current_arg_int=\count297
+\g__xparse_grabber_int=\count298
+\l__xparse_m_args_int=\count299
+\l__xparse_mandatory_args_int=\count300
+\l__xparse_v_nesting_int=\count301
+)
+(/opt/texlive/2017/texmf-dist/tex/latex/l3packages/xtemplate/xtemplate.sty
+Package: xtemplate 2018/02/21 L3 Experimental prototype document functions
+\l__xtemplate_tmp_dim=\dimen266
+\l__xtemplate_tmp_int=\count302
+\l__xtemplate_tmp_muskip=\muskip18
+\l__xtemplate_tmp_skip=\skip56
+)
+Package: xfrac 2018/02/21 L3 Experimental split-level fractions
+\l__xfrac_slash_box=\box57
+\l__xfrac_tmp_box=\box58
+\l__xfrac_denominator_bot_sep_dim=\dimen267
+\l__xfrac_numerator_bot_sep_dim=\dimen268
+\l__xfrac_numerator_top_sep_dim=\dimen269
+\l__xfrac_slash_left_sep_dim=\dimen270
+\l__xfrac_slash_right_sep_dim=\dimen271
+\l__xfrac_slash_left_muskip=\muskip19
+\l__xfrac_slash_right_muskip=\muskip20
+.................................................
+. xtemplate info: "declare-object-type"
+. 
+. Declaring object type 'xfrac' taking 3 argument(s) on line 80.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \sfrac with sig. 'omom' on line 420.
+.................................................
+)
 (./template_Report.aux)
 \openout1 = `template_Report.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
- (/opt/texlive/2017/texmf-dist/tex/latex/ucs/ucsencs.def
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 22.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 22.
+ (/opt/texlive/2017/texmf-dist/tex/latex/base/ts1cmr.fd
+File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    ... okay on input line 22.
+(/opt/texlive/2017/texmf-dist/tex/latex/ucs/ucsencs.def
 File: ucsencs.def 2011/01/21 Fixes to fontencodings LGR, T3
 )
 *geometry* driver: auto-detecting
@@ -679,16 +959,16 @@ File: ucsencs.def 2011/01/21 Fixes to fontencodings LGR, T3
 
 (/opt/texlive/2017/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count147
-\scratchdimen=\dimen179
-\scratchbox=\box41
-\nofMPsegments=\count148
-\nofMParguments=\count149
+\scratchcounter=\count303
+\scratchdimen=\dimen272
+\scratchbox=\box59
+\nofMPsegments=\count304
+\nofMParguments=\count305
 \everyMPshowfont=\toks41
-\MPscratchCnt=\count150
-\MPscratchDim=\dimen180
-\MPnumerator=\count151
-\makeMPintoPDFobject=\count152
+\MPscratchCnt=\count306
+\MPscratchDim=\dimen273
+\MPnumerator=\count307
+\makeMPintoPDFobject=\count308
 \everyMPtoPDFconversion=\toks42
 ) (/opt/texlive/2017/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
@@ -707,11 +987,11 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-\c@lstlisting=\count153
+\c@lstlisting=\count309
 
 ABD: EveryShipout initializing macros
-\AtBeginShipoutBox=\box42
-Package hyperref Info: Link coloring ON on input line 21.
+\AtBeginShipoutBox=\box60
+Package hyperref Info: Link coloring ON on input line 22.
 
 (/opt/texlive/2017/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
@@ -719,91 +999,84 @@ Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 (/opt/texlive/2017/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
-\c@section@level=\count154
+\c@section@level=\count310
 )
-LaTeX Info: Redefining \ref on input line 21.
-LaTeX Info: Redefining \pageref on input line 21.
-LaTeX Info: Redefining \nameref on input line 21.
+LaTeX Info: Redefining \ref on input line 22.
+LaTeX Info: Redefining \pageref on input line 22.
+LaTeX Info: Redefining \nameref on input line 22.
 
 (./template_Report.out) (./template_Report.out)
 \@outlinefile=\write4
 \openout4 = `template_Report.out'.
 
+ [1
+
+{/opt/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+LaTeX Font Info:    Try loading font information for T1+ptm on input line 70.
+
+(/opt/texlive/2017/texmf-dist/tex/latex/psnfss/t1ptm.fd
+File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
+)
+LaTeX Font Info:    Try loading font information for TS1+ptm on input line 70.
+
+(/opt/texlive/2017/texmf-dist/tex/latex/psnfss/ts1ptm.fd
+File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
+)
+
+LaTeX Font Warning: Font shape `T1/cmr/m/n' in size <5.58325> not available
+(Font)              size <6> substituted on input line 70.
 
 (/opt/texlive/2017/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2015/06/04 1.6 listings language file
 )
 (/opt/texlive/2017/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
-)
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 85.
-
-(/opt/texlive/2017/texmf-dist/tex/latex/base/omscmr.fd
-File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
-)
-LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 85.
- [1
-
-{/opt/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2] [3]
-Package hyperref Info: bookmark level for unknown todo defaults to 0 on input l
-ine 253.
-LaTeX Font Info:    Try loading font information for T1+cmtt on input line 299.
-
-
-(/opt/texlive/2017/texmf-dist/tex/latex/base/t1cmtt.fd
-File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
-)
-
-LaTeX Warning: Citation `greenwade93' on page 4 undefined on input line 299.
-
-(./template_Report.bbl
+) [2] [3]
+(./template_Report.bbl [4]
 
 LaTeX Warning: Empty `thebibliography' environment on input line 3.
 
-) [4] [5]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 308.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 308.
+) [5]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 292.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 292.
  (./template_Report.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 308.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 308.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 292.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 292.
 Package rerunfilecheck Info: File `template_Report.out' has not changed.
-(rerunfilecheck)             Checksum: 6C39AC8B2053410B36208DE3A0BB1630;716.
+(rerunfilecheck)             Checksum: F4D68004A681F49A2037C6890D942E79;988.
 
 
-LaTeX Warning: There were undefined references.
+LaTeX Font Warning: Size substitutions with differences
+(Font)              up to 0.41675pt have occurred.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 308.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 292.
  ) 
 Here is how much of TeX's memory you used:
- 19485 strings out of 492982
- 350810 string characters out of 6135302
- 497351 words of memory out of 5000000
- 22500 multiletter control sequences out of 15000+600000
- 16968 words of font info for 41 fonts, out of 8000000 for 9000
+ 28444 strings out of 492982
+ 538985 string characters out of 6135302
+ 663193 words of memory out of 5000000
+ 31418 multiletter control sequences out of 15000+600000
+ 545890 words of font info for 51 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 62i,9n,80p,508b,1909s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/opt/texlive/2017/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}</opt/
-texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></opt/texlive
-/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></opt/texlive/2017/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></opt/texlive/2017/texmf-dis
-t/fonts/type1/public/amsfonts/cm/cmr10.pfb></opt/texlive/2017/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmr7.pfb></opt/texlive/2017/texmf-dist/fonts/type1/pub
-lic/amsfonts/cm/cmsy10.pfb></opt/texlive/2017/texmf-dist/fonts/type1/public/cm-
-super/sfbx0900.pfb></opt/texlive/2017/texmf-dist/fonts/type1/public/cm-super/sf
-bx1000.pfb></opt/texlive/2017/texmf-dist/fonts/type1/public/cm-super/sfbx1200.p
-fb></opt/texlive/2017/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></opt
-/texlive/2017/texmf-dist/fonts/type1/public/cm-super/sfrm0700.pfb></opt/texlive
-/2017/texmf-dist/fonts/type1/public/cm-super/sfrm0900.pfb></opt/texlive/2017/te
-xmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></opt/texlive/2017/texmf-dist
-/fonts/type1/public/cm-super/sfrm1200.pfb></opt/texlive/2017/texmf-dist/fonts/t
-ype1/public/cm-super/sfrm1728.pfb></opt/texlive/2017/texmf-dist/fonts/type1/pub
-lic/cm-super/sfti1000.pfb></opt/texlive/2017/texmf-dist/fonts/type1/public/cm-s
-uper/sftt1000.pfb>
-Output written on template_Report.pdf (5 pages, 245685 bytes).
+ 62i,6n,74p,10366b,1909s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/opt/texlive/2017/texmf-dist/fonts/enc/dvips/base/8r.enc}{/opt/texlive/2017/
+texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/opt/texlive/2017/texmf-di
+st/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</opt/texlive/2017/texmf-dist/font
+s/type1/public/amsfonts/cm/cmsy10.pfb></opt/texlive/2017/texmf-dist/fonts/type1
+/public/cm-super/sfbx0900.pfb></opt/texlive/2017/texmf-dist/fonts/type1/public/
+cm-super/sfbx1000.pfb></opt/texlive/2017/texmf-dist/fonts/type1/public/cm-super
+/sfbx1200.pfb></opt/texlive/2017/texmf-dist/fonts/type1/public/cm-super/sfbx144
+0.pfb></opt/texlive/2017/texmf-dist/fonts/type1/public/cm-super/sfrm0600.pfb></
+opt/texlive/2017/texmf-dist/fonts/type1/public/cm-super/sfrm0900.pfb></opt/texl
+ive/2017/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></opt/texlive/2017
+/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></opt/texlive/2017/texmf-d
+ist/fonts/type1/public/cm-super/sfrm1728.pfb></opt/texlive/2017/texmf-dist/font
+s/type1/public/cm-super/sfti1000.pfb></opt/texlive/2017/texmf-dist/fonts/type1/
+urw/times/utmr8a.pfb>
+Output written on template_Report.pdf (5 pages, 192290 bytes).
 PDF statistics:
- 384 PDF objects out of 1000 (max. 8388607)
- 356 compressed objects within 4 object streams
- 207 named destinations out of 1000 (max. 500000)
- 101 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 378 PDF objects out of 1000 (max. 8388607)
+ 355 compressed objects within 4 object streams
+ 206 named destinations out of 1000 (max. 500000)
+ 141 words of extra memory for PDF output out of 10000 (max. 10000000)
 

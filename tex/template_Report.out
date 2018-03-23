@@ -1,11 +1,16 @@
 \BOOKMARK [1][-]{section.1}{Introduction}{}% 1
-\BOOKMARK [1][-]{section.2}{Some examples to get started}{}% 2
-\BOOKMARK [2][-]{subsection.2.1}{How to include Figures}{section.2}% 3
-\BOOKMARK [1][-]{section.3}{Code}{}% 4
-\BOOKMARK [2][-]{subsection.3.1}{complex.h}{section.3}% 5
-\BOOKMARK [2][-]{subsection.3.2}{fft.c}{section.3}% 6
-\BOOKMARK [2][-]{subsection.3.3}{How to add Tables}{section.3}% 7
-\BOOKMARK [2][-]{subsection.3.4}{How to write Mathematics}{section.3}% 8
-\BOOKMARK [2][-]{subsection.3.5}{How to create Sections and Subsections}{section.3}% 9
-\BOOKMARK [2][-]{subsection.3.6}{How to add Lists}{section.3}% 10
-\BOOKMARK [2][-]{subsection.3.7}{How to add Citations and a References List}{section.3}% 11
+\BOOKMARK [1][-]{section.2}{Code Explanation}{}% 2
+\BOOKMARK [2][-]{subsection.2.1}{taus.c}{section.2}% 3
+\BOOKMARK [2][-]{subsection.2.2}{rangen\137double.c}{section.2}% 4
+\BOOKMARK [2][-]{subsection.2.3}{complex.h}{section.2}% 5
+\BOOKMARK [2][-]{subsection.2.4}{fixed\137point.c}{section.2}% 6
+\BOOKMARK [2][-]{subsection.2.5}{fft.c}{section.2}% 7
+\BOOKMARK [3][-]{subsubsection.2.5.1}{twiddle factor}{subsection.2.5}% 8
+\BOOKMARK [3][-]{subsubsection.2.5.2}{radix coefficients reordering}{subsection.2.5}% 9
+\BOOKMARK [3][-]{subsubsection.2.5.3}{radix 4 }{subsection.2.5}% 10
+\BOOKMARK [3][-]{subsubsection.2.5.4}{QAM input}{subsection.2.5}% 11
+\BOOKMARK [3][-]{subsubsection.2.5.5}{distortion test}{subsection.2.5}% 12
+\BOOKMARK [3][-]{subsubsection.2.5.6}{main}{subsection.2.5}% 13
+\BOOKMARK [1][-]{section.3}{Code}{}% 14
+\BOOKMARK [2][-]{subsection.3.1}{complex.h}{section.3}% 15
+\BOOKMARK [2][-]{subsection.3.2}{fft.c}{section.3}% 16
