@@ -1,0 +1,7 @@
+*.log
+*.aux
+*.synctex.gz
+*.swp
+fft.o
+fft
+
