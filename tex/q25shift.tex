@@ -1,0 +1,143 @@
+% GNUPLOT: LaTeX picture with Postscript
+\begingroup
+  \makeatletter
+  \providecommand\color[2][]{%
+    \GenericError{(gnuplot) \space\space\space\@spaces}{%
+      Package color not loaded in conjunction with
+      terminal option `colourtext'%
+    }{See the gnuplot documentation for explanation.%
+    }{Either use 'blacktext' in gnuplot or load the package
+      color.sty in LaTeX.}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\includegraphics[2][]{%
+    \GenericError{(gnuplot) \space\space\space\@spaces}{%
+      Package graphicx or graphics not loaded%
+    }{See the gnuplot documentation for explanation.%
+    }{The gnuplot epslatex terminal needs graphicx.sty or graphics.sty.}%
+    \renewcommand\includegraphics[2][]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \@ifundefined{ifGPcolor}{%
+    \newif\ifGPcolor
+    \GPcolortrue
+  }{}%
+  \@ifundefined{ifGPblacktext}{%
+    \newif\ifGPblacktext
+    \GPblacktextfalse
+  }{}%
+  % define a \g@addto@macro without @ in the name:
+  \let\gplgaddtomacro\g@addto@macro
+  % define empty templates for all commands taking text:
+  \gdef\gplbacktext{}%
+  \gdef\gplfronttext{}%
+  \makeatother
+  \ifGPblacktext
+    % no textcolor at all
+    \def\colorrgb#1{}%
+    \def\colorgray#1{}%
+  \else
+    % gray or color?
+    \ifGPcolor
+      \def\colorrgb#1{\color[rgb]{#1}}%
+      \def\colorgray#1{\color[gray]{#1}}%
+      \expandafter\def\csname LTw\endcsname{\color{white}}%
+      \expandafter\def\csname LTb\endcsname{\color{black}}%
+      \expandafter\def\csname LTa\endcsname{\color{black}}%
+      \expandafter\def\csname LT0\endcsname{\color[rgb]{1,0,0}}%
+      \expandafter\def\csname LT1\endcsname{\color[rgb]{0,1,0}}%
+      \expandafter\def\csname LT2\endcsname{\color[rgb]{0,0,1}}%
+      \expandafter\def\csname LT3\endcsname{\color[rgb]{1,0,1}}%
+      \expandafter\def\csname LT4\endcsname{\color[rgb]{0,1,1}}%
+      \expandafter\def\csname LT5\endcsname{\color[rgb]{1,1,0}}%
+      \expandafter\def\csname LT6\endcsname{\color[rgb]{0,0,0}}%
+      \expandafter\def\csname LT7\endcsname{\color[rgb]{1,0.3,0}}%
+      \expandafter\def\csname LT8\endcsname{\color[rgb]{0.5,0.5,0.5}}%
+    \else
+      % gray
+      \def\colorrgb#1{\color{black}}%
+      \def\colorgray#1{\color[gray]{#1}}%
+      \expandafter\def\csname LTw\endcsname{\color{white}}%
+      \expandafter\def\csname LTb\endcsname{\color{black}}%
+      \expandafter\def\csname LTa\endcsname{\color{black}}%
+      \expandafter\def\csname LT0\endcsname{\color{black}}%
+      \expandafter\def\csname LT1\endcsname{\color{black}}%
+      \expandafter\def\csname LT2\endcsname{\color{black}}%
+      \expandafter\def\csname LT3\endcsname{\color{black}}%
+      \expandafter\def\csname LT4\endcsname{\color{black}}%
+      \expandafter\def\csname LT5\endcsname{\color{black}}%
+      \expandafter\def\csname LT6\endcsname{\color{black}}%
+      \expandafter\def\csname LT7\endcsname{\color{black}}%
+      \expandafter\def\csname LT8\endcsname{\color{black}}%
+    \fi
+  \fi
+    \setlength{\unitlength}{0.0500bp}%
+    \ifx\gptboxheight\undefined%
+      \newlength{\gptboxheight}%
+      \newlength{\gptboxwidth}%
+      \newsavebox{\gptboxtext}%
+    \fi%
+    \setlength{\fboxrule}{0.5pt}%
+    \setlength{\fboxsep}{1pt}%
+\begin{picture}(5040.00,3772.00)%
+    \gplgaddtomacro\gplbacktext{%
+      \csname LTb\endcsname%
+      \put(396,594){\makebox(0,0)[r]{\strut{}\footnotesize{$50$}}}%
+      \csname LTb\endcsname%
+      \put(396,1097){\makebox(0,0)[r]{\strut{}\footnotesize{$60$}}}%
+      \csname LTb\endcsname%
+      \put(396,1601){\makebox(0,0)[r]{\strut{}\footnotesize{$70$}}}%
+      \csname LTb\endcsname%
+      \put(396,2104){\makebox(0,0)[r]{\strut{}\footnotesize{$80$}}}%
+      \csname LTb\endcsname%
+      \put(396,2608){\makebox(0,0)[r]{\strut{}\footnotesize{$90$}}}%
+      \csname LTb\endcsname%
+      \put(396,3111){\makebox(0,0)[r]{\strut{}\footnotesize{$100$}}}%
+      \csname LTb\endcsname%
+      \put(528,374){\makebox(0,0){\strut{}\footnotesize{$-30$}}}%
+      \csname LTb\endcsname%
+      \put(984,374){\makebox(0,0){\strut{}\footnotesize{$-20$}}}%
+      \csname LTb\endcsname%
+      \put(1440,374){\makebox(0,0){\strut{}\footnotesize{$-10$}}}%
+      \csname LTb\endcsname%
+      \put(1896,374){\makebox(0,0){\strut{}\footnotesize{$0$}}}%
+      \csname LTb\endcsname%
+      \put(2351,374){\makebox(0,0){\strut{}\footnotesize{$10$}}}%
+      \csname LTb\endcsname%
+      \put(2807,374){\makebox(0,0){\strut{}\footnotesize{$20$}}}%
+      \csname LTb\endcsname%
+      \put(3263,374){\makebox(0,0){\strut{}\footnotesize{$30$}}}%
+      \csname LTb\endcsname%
+      \put(3719,374){\makebox(0,0){\strut{}\footnotesize{$40$}}}%
+    }%
+    \gplgaddtomacro\gplfronttext{%
+      \csname LTb\endcsname%
+      \put(-44,1852){\rotatebox{-270}{\makebox(0,0){\strut{}\footnotesize{SNR [dB]}}}}%
+      \put(2123,154){\makebox(0,0){\strut{}\footnotesize{input [dB]}}}%
+      \put(2123,3441){\makebox(0,0){\strut{}\shortstack{Input Dynamic Range\\16QAM Q1.15 FFT256}}}%
+      \csname LTb\endcsname%
+      \put(4181,3001){\makebox(0,0)[r]{\strut{}\tiny{Q10.15}}}%
+      \csname LTb\endcsname%
+      \put(4181,2781){\makebox(0,0)[r]{\strut{}\tiny{Q9.16}}}%
+      \csname LTb\endcsname%
+      \put(4181,2561){\makebox(0,0)[r]{\strut{}\tiny{Q8.17}}}%
+      \csname LTb\endcsname%
+      \put(4181,2341){\makebox(0,0)[r]{\strut{}\tiny{Q7.18}}}%
+      \csname LTb\endcsname%
+      \put(4181,2121){\makebox(0,0)[r]{\strut{}\tiny{Q6.19}}}%
+      \csname LTb\endcsname%
+      \put(4181,1901){\makebox(0,0)[r]{\strut{}\tiny{Q5.20}}}%
+      \csname LTb\endcsname%
+      \put(4181,1681){\makebox(0,0)[r]{\strut{}\tiny{Q4.21}}}%
+      \csname LTb\endcsname%
+      \put(4181,1461){\makebox(0,0)[r]{\strut{}\tiny{Q3.22}}}%
+      \csname LTb\endcsname%
+      \put(4181,1241){\makebox(0,0)[r]{\strut{}\tiny{Q2.23}}}%
+      \csname LTb\endcsname%
+      \put(4181,1021){\makebox(0,0)[r]{\strut{}\tiny{Q1.24}}}%
+    }%
+    \gplbacktext
+    \put(0,0){\includegraphics{q25shift}}%
+    \gplfronttext
+  \end{picture}%
+\endgroup

@@ -374,6 +374,7 @@ void fft_distortion_test(int N,         // dimension of FFT under test
   double mean_in=0.0, mean_error=0.0, SNR, D;
   int i;
   char file_name[256];
+  char fn[40];
   FILE *fp, *fp2;
 
   for (i=0; i<N; i++)
@@ -390,9 +391,13 @@ void fft_distortion_test(int N,         // dimension of FFT under test
   switch (test) {
     //*0.05 = 1/20
     case 0:       /** Generate cosine **/
+	    sprintf(fn, "results/input_cosine_%d.txt", (int)input_dB);
+	    fp2 = fopen(fn, "w");// "w" means that we are going to write on this file
       for (i=0; i<N; i++){
-        data[i].r=pow(10,.05*input_dB)*cos(2.0*PI*0.062625*i)*sqrt(2);
+        data[i].r=pow(10,.05*input_dB)*cos(2.0*PI*0.10*i)*sqrt(2);
+    	fprintf(fp2,"%d %.10f\n",i,data[i]);
       }
+    fclose(fp2);
       break;
 
     case 1:    // QPSK
@@ -470,7 +475,7 @@ void fft_distortion_test(int N,         // dimension of FFT under test
     *maxSNR = SNR;
     memcpy(maxscale,scale,7);
     char filename[20];
-    sprintf(filename, "results/out_%d.txt", (int)input_dB);
+    sprintf(filename, "results/cosine64FFT_%d.txt", (int)input_dB);
     fp = fopen(filename, "w");// "w" means that we are going to write on this file
     fprintf(fp,"#int double real img int16 real16 img16 error\n");
     for (i=0;i<N;i++) {
@@ -484,9 +489,9 @@ void fft_distortion_test(int N,         // dimension of FFT under test
 	    double av32 = ddata32r*ddata32r+ddata32i*ddata32i;
 	    double error32 = pow((data[i].r-ddata32r),2) + pow((data[i].i-ddata32i),2);
     	fprintf(fp,"%d %.10f %.10f %.10f %.10f %.10f %.10f %.10f\n",i,avdouble,data[i].r,data[i].i,av16,ddata16r,ddata16i,error16);
+    	fprintf(fp,"%d %.10f %.10f %.10f ",i,avdouble,av16,av32);
     }
     fclose(fp);
-
   }
 
 }

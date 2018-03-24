@@ -1,0 +1,29 @@
+#set terminal wxt size 900,900
+#set terminal postscript eps color colortext
+#set output 'test.eps'
+set terminal epslatex size 3.5,2.62 color colortext
+set output 'dyn_range.tex'
+
+
+set title '\shortstack{Input Dynamic Range\\16QAM Q1.15 FFT256}'
+set xlabel '\footnotesize{input [dB]}'
+set ylabel '\footnotesize{SNR [dB]}'
+set format y '\footnotesize{$%h$}'
+set format x '\footnotesize{$%h$}'
+set lmargin 4
+set rmargin 4
+set xlabel offset 0,0.5
+set ylabel offset 2.5,0
+set grid
+set xrange [-60:0]
+set xtics 10
+set yrange [0:80]
+set ytics 10
+unset key
+
+#set key width -10
+set arrow nohead from -38.5,50 to -5.5,50 lt rgb "red" 
+set arrow nohead from -38.5,0 to -38.5,50 lt rgb "black" dashtype 4
+set arrow nohead from -5.5,0 to -5.5,50  lt rgb "black" dashtype 4
+plot "results/out_256_2_16_0.txt" using 1:2 w lines ls 1 
+#pause -1 "Hit any key to continue"

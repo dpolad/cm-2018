@@ -26,10 +26,6 @@
 \begin{document}
 \maketitle
 
-\begin{abstract}
-    Your abstract.
-\end{abstract}
-
 \section{Introduction}
 
 The goal of this report is to illustrate the work done on a FFT simulator in for the CompMeth course in EURECOM.
@@ -58,7 +54,7 @@ Here we define the functions used to compute fixed point saturated addition and 
 Nothing was changed here with the exception of data types.
 
 \subsection{fft.c}
-This is the main core of the application, where all the processing of the FFT is done. Each function will be separately covered in this section.
+This is the main core of the application, where all the processing of the FFT is done. Each function will be separately covered in this section, together with some brief explanation of their meaning in the overall FFT computation. 
 
 
 \subsubsection{Twiddle factor}
@@ -70,10 +66,23 @@ The functions:
 \end{itemize}
 Are used to compute the twiddle factor. As the prototype indicates, each function is required whether we are using floating points, Q15 or Q24 representations.\\
 Following these formula, it's straightforward to understand the computations done in this function and the role of the \textit{stuff} parameter.
-$$X_k = \frac{1}{\sqrt{N}}\sum_{n=0}^{N-1} x_k W_N^{kn} $$
+
+\begin{equation}\label{eq:FFT}
+X_k = \frac{1}{\sqrt{N}}\sum_{n=0}^{N-1} x_k W_N^{kn}
+\end{equation}
 $$W_N^{kn} = e^{\frac{-j2\pi kn}{N}} = \cos{(2\pi kn)} - j\sin{(2\pi kn)}$$
 $$\mathit{stuff} = kn$$
 
+\paragraph{modifications:}
+At the beginning, only the floating point twiddle factor function was present.
+
+\paragraph{quantization:}
+As can be seen in the code, in the fixed point version of the function, a scaling factor is needed to convert from floating point to fixed point. (i.e. $\pm32767.0$ for 16-bit).
+The range for a Q15 fixed point number goes from $-1$ to $1-2^{-15}$, as a consequence, it is intrinsically not possible to represent exactly the number 1.\\
+Radix-4 twiddle factors have the characteristic that the real part ranges from 0 to 1, and the imaginary part from 0 to -1.
+The programmer is left with two options: either produce an unbiased result, using $\pm32767.0$, or use $-32768.0$ only for imaginary part and $+32767.0$ for the real part.\\
+Trying both of them led to a slightly better result for the biased version, so it was the one left in the code.\\\\
+Another important choice is between rounding and truncation. The C standard for typecasting is truncation, thus in order to produce a rounded value it would be necessary to add $\pm0.5$ to the final result before casting.
 
 \subsubsection{Coefficients reordering}
 The following functions are needed because after the recursion of the radix 4 FFT butterfly, the coefficients are shuffled in a precise pattern. An simple example of a 16 points radix 4 butterfly can be seen in the following image.\\ 
@@ -83,7 +92,6 @@ Again there are three functions used depending on the data type:
 	\item bit\_r4\_reorder\_fixed\_Q15(struct complex16 *W, int N)
 	\item bit\_r4\_reorder\_fixed\_Q24(struct complex32 *W, int N)
 \end{itemize}
-
 
 
 \tikzstyle{n}= [circle, fill, minimum size=4pt,inner sep=0pt, outer sep=0pt]
@@ -153,22 +161,88 @@ Again there are three functions used depending on the data type:
 		\path (N-5-\desty.east) edge[-] (N-7-\sourcey.west);
 	}
 	\end{tikzpicture}
+	
+	\paragraph{modifications}
+	A weird bug was discovered and fixed in the fixed point version of the function. As can be seen in the two code listings, the original code was applying the scaling only to those coefficients that were swapped. Fixing this bug strongly improved the output SNR, especially in the low dB input where the scaling is more likely to be executed at the reordering phase.
 
 
 \subsubsection{Radix 4}
 This is the core function where the FFT coefficients are actually calculated. The function is recursive, and calls itself back until no more splitting is possible(when there is only one butterfly left), every time cutting the number of iterations by \sfrac{1}{4}.
+\paragraph{shifting}
+At each stage, the input data might be right shifted by a scale value, ranging from 0 to $log_2(\sqrt{N})$. This is because, according to (\ref{eq:FFT}), final coefficients must be divided by a factor $\sqrt{N}$. This shift can be split in all the stages of the Radix-4 FFT in order to achieve the maximum possible precision with the least number of saturations.
 \begin{itemize}
 	\item radix4(struct complex *x, int N)
 	\item TODO
 	\item TODO
 \end{itemize}
-As for the other functions. this one is also present thrre times, spending on the data
+As for the other functions this one is also present three times, depending on input data type.
+\paragraph{modifications}
+Other than constructing the functions for fixed point arithmetics, a simple control on the twiddle factor was developed in order to skip multiplications when the twiddle factor is equal to 1. This would slightly reduce computation time and, more important, avoid possible precision losses. 
 
 \subsubsection{QAM input}
 This helper function is called in the two cases when PSK or QAM input is needed. This will simply fill the input vector with the right numbers. This function was not touched.
 \subsubsection{distortion test}
+The purpose of this function is to run a single simulation of an FFT both in double precision arithmetic and one between 16-bit or 25-bit fixed point arithmetic and produce an output SNR value between the two.
+The formula used to calculate the SNR is:
+
+$$\mathit{SNR} = 10\log_{10}{\left(\frac{\sum_{n=0}^{N-1}{|X_n^f - X_n^d|^2}}{\sum_{n=0}^{N-1}{|X_n^f|^2}}\right)}$$
+
+Where $X_n^f$ is the n-th value of the floating point FFT and $X_n^d$ is the fixed point decimal of the same value.\\\\
+Also at the end of the computation, if the current SNR is better than the stored maximum, that value is updated(\textit{maxSNR}) and the current scaling is saved(\textit{maxscale}).\\\\
+As shown in the prototype, many other parameters are required. Most of them are pretty self explained by the comments.
+One parameter worth mentioning is \textit{test}. It is an integer value passed from the calling function which is used to generate the input signal according to the following scheme:
+\begin{description}
+	\item[0 $\rightarrow$] fixed frequency cosine signal
+	\item[1 $\rightarrow$] PSK white noise signal
+	\item[2 $\rightarrow$] 16QAM white noise signal
+\end{description}
+
+Most of the code in this function was left untouched, with the exception of the extension to Q24 fixed point structure, leading to the inclusion of \textit{data\_t} and \textit{shift} parameters.
+The first is a simple selector of data type, while the latter will be discussed later.
+
+\begin{lstlisting}
+void fft_distortion_test(
+int N,                              // dimension of FFT under test 
+char test,                          // type of test
+double input_dB,                    // strength of input
+char *scale,                        // pointer to scaling schedule
+double *maxSNR,                     // pointer best signal-to-noise ratio
+char *maxscale,                     // pointer to best scaling schedule
+struct complex *data,               // pointer to floating point data vector
+struct complex16 *data16,           // pointer to Q15 data vector
+struct complex32 *data32,           // pointer to Q17 data vector
+int data_t,                         // 16 or 25 bit input
+int shift)                          // 25-bit only pre/post shift
+
+\end{lstlisting}
 
 \subsubsection{main}
+The purpose of the main function, other than obviously interfacing with the user and extrapolate input parameters, is to actually launch the executions of the simulation.
+As one strong factor of the output quality is the scaling schedule(previously mentioned in the radix4 section), the main function simply tries all the possible combinations in an exhaustive manner and prints out only the best one. This is also the reason why the final execution time is so long, the complexity of the search is: $$\frac{(2n)!}{(n!)^2}$$
+where:
+$$n = log_2{\sqrt{N}}$$
+\section{Results}
+As suggested in the instruction, it is interesting to see the input signal strength versus the signal-to-distortion ratio to find the practical dynamic range.
+As there are no given numbers to use to decide the acceptable SNR threshold, a 50dB value has been chosen.
+\begin{figure}
+	\centering
+	\resizebox{1.0\textwidth}{!}{\input{q25shift}}
+	%%\input{cosine_DR}
+\end{figure}
+\begin{figure}
+	\centering
+	\resizebox{1.0\textwidth}{!}{\input{cosine_DR}}
+	%%\input{cosine_DR}
+\end{figure}
+\begin{figure}
+	\centering
+	\resizebox{1.0\textwidth}{!}{\input{dyn_range}}
+	%%\input{cosine_DR}
+\end{figure}
+\begin{figure}
+	\centering
+	\resizebox{1.0\textwidth}{!}{\input{cosineFFT}}
+\end{figure}
 
 \section{Code}
 \subsection{complex.h}

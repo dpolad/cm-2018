@@ -1,0 +1,51 @@
+#set terminal wxt size 900,900
+#set terminal postscript eps color colortext
+#set output 'test.eps'
+set terminal epslatex size 7,2.62 color colortext
+set output 'cosineFFT.tex'
+
+set multiplot layout 1,2
+
+
+set lmargin 4
+set rmargin 4
+set title '\shortstack{input\\ $N=64$ $f=0.1$ $dB=-5$}'
+set xlabel '\footnotesize{$i$}'
+set ylabel '\footnotesize{$cos(2\pi fi)$}'
+set format y '\footnotesize{$%h$}'
+set format x '\footnotesize{$%h$}'
+set xlabel offset 0,0.5
+set ylabel offset 2.5,0
+set xrange [0:64]
+set xtics 8
+set grid
+#set xrange [-60:0]
+#set xtics 10
+#set yrange [0:70]
+#set ytics 10
+unset key
+
+#set key bottom left spacing 0.5 width -4
+#set key width -10
+#set arrow nohead from -40,20 to -15,20 ls 1 dashtype 2
+#set arrow nohead from -40,20 to -40,50 ls 1
+#set arrow nohead from -15,20 to -15,50 ls 1
+plot "results/input_cosine_-5.txt" using 1:2 w lines ls 1
+
+set title '\shortstack{FFT\\ $N=64$ $f=0.1$ $dB=-5$}'
+set key
+set xlabel '\footnotesize{$n$}'
+set ylabel '\footnotesize{$|X_n|$}'
+set format y '\footnotesize{$10^{%L}$}'
+set logscale y 10
+set tics font ", 3"
+set xtics 8
+set key top center Left
+set key width -7
+set key samplen 1 
+
+plot "results/cosine64FFT_-3.txt" using 1:2 w lines ls 1 title '\tiny{FFT64 FP}', \
+     "results/cosine64FFT_-3.txt" using 1:3 w lines ls 2 title '\tiny{FFT64 Q1.15 }', \
+     "results/cosine64FFT_-3.txt" using 1:4 w lines ls 4 title '\tiny{FFT64 Q11.15}'
+
+unset multiplot

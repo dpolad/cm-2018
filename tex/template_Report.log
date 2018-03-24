@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2018.3.22)  24 MAR 2018 12:04
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2018.3.22)  24 MAR 2018 23:29
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1020,14 +1020,18 @@ LaTeX Info: Redefining \nameref on input line 26.
  [1
 
 {/opt/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+Underfull \hbox (badness 10000) in paragraph at lines 80--86
+
+ []
+
 \c@x=\count311
 \c@y=\count312
-LaTeX Font Info:    Try loading font information for T1+ptm on input line 159.
-
-(/opt/texlive/2017/texmf-dist/tex/latex/psnfss/t1ptm.fd
+[2]
+LaTeX Font Info:    Try loading font information for T1+ptm on input line 170.
+ (/opt/texlive/2017/texmf-dist/tex/latex/psnfss/t1ptm.fd
 File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
 )
-LaTeX Font Info:    Try loading font information for TS1+ptm on input line 159.
+LaTeX Font Info:    Try loading font information for TS1+ptm on input line 170.
 
 
 (/opt/texlive/2017/texmf-dist/tex/latex/psnfss/ts1ptm.fd
@@ -1035,68 +1039,172 @@ File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
 )
 
 LaTeX Font Warning: Font shape `T1/cmr/m/n' in size <5.58325> not available
-(Font)              size <6> substituted on input line 159.
+(Font)              size <6> substituted on input line 170.
 
-[2] (/opt/texlive/2017/texmf-dist/tex/latex/listings/lstlang1.sty
+[3]
+Underfull \hbox (badness 10000) in paragraph at lines 190--194
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 190--194
+
+ []
+
+
+Overfull \hbox (11.10506pt too wide) in paragraph at lines 209--210
+[][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (29.1008pt too wide) in paragraph at lines 211--212
+[][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+(./q25shift.tex
+\gptboxheight=\skip57
+\gptboxwidth=\skip58
+\gptboxtext=\box61
+Package epstopdf Info: Source file: <q25shift.eps>
+(epstopdf)                    date: 2018-03-24 23:29:11
+(epstopdf)                    size: 24479 bytes
+(epstopdf)             Output file: <q25shift-eps-converted-to.pdf>
+(epstopdf)                    date: 2018-03-24 23:28:45
+(epstopdf)                    size: 4150 bytes
+(epstopdf)             Command: <repstopdf --outfile=q25shift-eps-converted-to.
+pdf q25shift.eps>
+(epstopdf)             \includegraphics on input line 140.
+runsystem(repstopdf --outfile=q25shift-eps-converted-to.pdf q25shift.eps)...exe
+cuted safely (allowed).
+
+Package epstopdf Info: Result file: <q25shift-eps-converted-to.pdf>
+(epstopdf)                    date: 2018-03-24 23:29:15
+(epstopdf)                    size: 4144 bytes.
+<q25shift-eps-converted-to.pdf, id=120, 252.945pt x 188.705pt>
+File: q25shift-eps-converted-to.pdf Graphic file (type pdf)
+<use q25shift-eps-converted-to.pdf>
+Package pdftex.def Info: q25shift-eps-converted-to.pdf  used on input line 140.
+
+(pdftex.def)             Requested size: 252.94438pt x 188.70453pt.
+) (./cosine_DR.tex
+Package epstopdf Info: Source file: <cosine_DR.eps>
+(epstopdf)                    date: 2018-03-24 22:42:48
+(epstopdf)                    size: 22248 bytes
+(epstopdf)             Output file: <cosine_DR-eps-converted-to.pdf>
+(epstopdf)                    date: 2018-03-24 22:42:51
+(epstopdf)                    size: 3961 bytes
+(epstopdf)             Command: <repstopdf --outfile=cosine_DR-eps-converted-to
+.pdf cosine_DR.eps>
+(epstopdf)             \includegraphics on input line 130.
+Package epstopdf Info: Output file is already uptodate.
+<cosine_DR-eps-converted-to.pdf, id=121, 252.945pt x 188.705pt>
+File: cosine_DR-eps-converted-to.pdf Graphic file (type pdf)
+<use cosine_DR-eps-converted-to.pdf>
+Package pdftex.def Info: cosine_DR-eps-converted-to.pdf  used on input line 130
+.
+(pdftex.def)             Requested size: 252.94438pt x 188.70453pt.
+) (./dyn_range.tex
+Package epstopdf Info: Source file: <dyn_range.eps>
+(epstopdf)                    date: 2018-03-24 22:59:07
+(epstopdf)                    size: 20505 bytes
+(epstopdf)             Output file: <dyn_range-eps-converted-to.pdf>
+(epstopdf)                    date: 2018-03-24 22:59:10
+(epstopdf)                    size: 3271 bytes
+(epstopdf)             Command: <repstopdf --outfile=dyn_range-eps-converted-to
+.pdf dyn_range.eps>
+(epstopdf)             \includegraphics on input line 124.
+Package epstopdf Info: Output file is already uptodate.
+<dyn_range-eps-converted-to.pdf, id=122, 252.945pt x 188.705pt>
+File: dyn_range-eps-converted-to.pdf Graphic file (type pdf)
+<use dyn_range-eps-converted-to.pdf>
+Package pdftex.def Info: dyn_range-eps-converted-to.pdf  used on input line 124
+.
+(pdftex.def)             Requested size: 252.94438pt x 188.70453pt.
+) (./cosineFFT.tex
+Package epstopdf Info: Source file: <cosineFFT.eps>
+(epstopdf)                    date: 2018-03-24 22:30:57
+(epstopdf)                    size: 26137 bytes
+(epstopdf)             Output file: <cosineFFT-eps-converted-to.pdf>
+(epstopdf)                    date: 2018-03-24 22:31:01
+(epstopdf)                    size: 4484 bytes
+(epstopdf)             Command: <repstopdf --outfile=cosineFFT-eps-converted-to
+.pdf cosineFFT.eps>
+(epstopdf)             \includegraphics on input line 174.
+Package epstopdf Info: Output file is already uptodate.
+<cosineFFT-eps-converted-to.pdf, id=123, 505.89pt x 188.705pt>
+File: cosineFFT-eps-converted-to.pdf Graphic file (type pdf)
+<use cosineFFT-eps-converted-to.pdf>
+Package pdftex.def Info: cosineFFT-eps-converted-to.pdf  used on input line 174
+.
+(pdftex.def)             Requested size: 505.88875pt x 188.70453pt.
+)
+(/opt/texlive/2017/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2015/06/04 1.6 listings language file
 )
 (/opt/texlive/2017/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
-) [3] [4]
+) [4] [5 <./q25shift-eps-converted-to.pdf> <./cosine_DR-eps-converted-to.pdf>] 
+[6 <./dyn_range-eps-converted-to.pdf> <./cosineFFT-eps-converted-to.pdf>] [7] [
+8]
 (./template_Report.bbl
 
 LaTeX Warning: Empty `thebibliography' environment on input line 3.
 
-) [5]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 383.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 383.
+) [9]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 458.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 458.
  (./template_Report.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 383.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 383.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 458.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 458.
 Package rerunfilecheck Info: File `template_Report.out' has not changed.
-(rerunfilecheck)             Checksum: 9BB31E05AC1C5F74623585C499B89B52;981.
+(rerunfilecheck)             Checksum: 3FF44B2190796C94DF29508725CE7A20;1024.
 
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 0.41675pt have occurred.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 383.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 458.
  ) 
 Here is how much of TeX's memory you used:
- 29615 strings out of 492982
- 564674 string characters out of 6135302
- 685029 words of memory out of 5000000
- 32577 multiletter control sequences out of 15000+600000
- 546934 words of font info for 54 fonts, out of 8000000 for 9000
+ 29714 strings out of 492982
+ 566088 string characters out of 6135302
+ 696199 words of memory out of 5000000
+ 32626 multiletter control sequences out of 15000+600000
+ 547624 words of font info for 56 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 55i,6n,74p,10366b,1909s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/opt/texlive/2017/texmf-dist/fonts/enc/dvips/base/8r.enc}{/opt/texlive/2017/
-texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/opt/texlive/2017/texmf-di
+ 55i,16n,74p,10366b,1909s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/opt/texlive/2017/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/opt/
+texlive/2017/texmf-dist/fonts/enc/dvips/base/8r.enc}{/opt/texlive/2017/texmf-di
 st/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</opt/texlive/2017/texmf-dist/font
 s/type1/public/amsfonts/cm/cmex10.pfb></opt/texlive/2017/texmf-dist/fonts/type1
 /public/amsfonts/cm/cmmi10.pfb></opt/texlive/2017/texmf-dist/fonts/type1/public
 /amsfonts/cm/cmmi5.pfb></opt/texlive/2017/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmmi7.pfb></opt/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr
-10.pfb></opt/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></
-opt/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></opt/texli
-ve/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></opt/texlive/2017
-/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></opt/texlive/2017/texmf-d
-ist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></opt/texlive/2017/texmf-dist/font
-s/type1/public/amsfonts/cm/cmti10.pfb></opt/texlive/2017/texmf-dist/fonts/type1
-/public/cm-super/sfbx0900.pfb></opt/texlive/2017/texmf-dist/fonts/type1/public/
-cm-super/sfbx1000.pfb></opt/texlive/2017/texmf-dist/fonts/type1/public/cm-super
-/sfbx1200.pfb></opt/texlive/2017/texmf-dist/fonts/type1/public/cm-super/sfbx144
-0.pfb></opt/texlive/2017/texmf-dist/fonts/type1/public/cm-super/sfrm0600.pfb></
-opt/texlive/2017/texmf-dist/fonts/type1/public/cm-super/sfrm0900.pfb></opt/texl
-ive/2017/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></opt/texlive/2017
-/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></opt/texlive/2017/texmf-d
-ist/fonts/type1/public/cm-super/sfrm1728.pfb></opt/texlive/2017/texmf-dist/font
-s/type1/public/cm-super/sfti1000.pfb></opt/texlive/2017/texmf-dist/fonts/type1/
-urw/times/utmr8a.pfb>
-Output written on template_Report.pdf (5 pages, 286892 bytes).
+s/cm/cmmi6.pfb></opt/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmm
+i7.pfb></opt/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><
+/opt/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></opt/tex
+live/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></opt/texlive/2017
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></opt/texlive/2017/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmr7.pfb></opt/texlive/2017/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmr8.pfb></opt/texlive/2017/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmsy10.pfb></opt/texlive/2017/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmsy5.pfb></opt/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm
+/cmsy6.pfb></opt/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.p
+fb></opt/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></opt
+/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></opt/texliv
+e/2017/texmf-dist/fonts/type1/public/cm-super/sfbx1000.pfb></opt/texlive/2017/t
+exmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></opt/texlive/2017/texmf-dis
+t/fonts/type1/public/cm-super/sfbx1440.pfb></opt/texlive/2017/texmf-dist/fonts/
+type1/public/cm-super/sfrm0500.pfb></opt/texlive/2017/texmf-dist/fonts/type1/pu
+blic/cm-super/sfrm0600.pfb></opt/texlive/2017/texmf-dist/fonts/type1/public/cm-
+super/sfrm0800.pfb></opt/texlive/2017/texmf-dist/fonts/type1/public/cm-super/sf
+rm1000.pfb></opt/texlive/2017/texmf-dist/fonts/type1/public/cm-super/sfrm1200.p
+fb></opt/texlive/2017/texmf-dist/fonts/type1/public/cm-super/sfrm1728.pfb></opt
+/texlive/2017/texmf-dist/fonts/type1/public/cm-super/sfti1000.pfb></opt/texlive
+/2017/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
+Output written on template_Report.pdf (9 pages, 380225 bytes).
 PDF statistics:
- 422 PDF objects out of 1000 (max. 8388607)
- 389 compressed objects within 4 object streams
- 210 named destinations out of 1000 (max. 500000)
- 141 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 508 PDF objects out of 1000 (max. 8388607)
+ 460 compressed objects within 5 object streams
+ 234 named destinations out of 1000 (max. 500000)
+ 169 words of extra memory for PDF output out of 10000 (max. 10000000)
 
