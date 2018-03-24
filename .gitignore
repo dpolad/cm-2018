@@ -2,6 +2,7 @@
 *.aux
 *.synctex.gz
 *.swp
+*-converted-to.pdf
 fft.o
 fft
 
