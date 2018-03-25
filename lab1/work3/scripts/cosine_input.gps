@@ -25,8 +25,8 @@ set key bottom left spacing 0.7 width -4
 #set arrow nohead from -40,20 to -15,20 ls 1 dashtype 2
 #set arrow nohead from -40,20 to -40,50 ls 1
 #set arrow nohead from -15,20 to -15,50 ls 1
-plot "results/out_64_0_16_0.txt" using 1:2 w lines ls 1 title '\tiny{FFT64}', \
-     "results/out_256_0_16_0.txt" using 1:2 w lines ls 2 title '\tiny{FFT256}', \
-     "results/out_1024_0_16_0.txt" using 1:2 w lines ls 3 title '\tiny{FFT1024}', \
-     "results/out_4096_0_16_0.txt" using 1:2 w lines ls 4 title '\tiny{FFT4096}'
+plot "../results/out_64_0_16_0.txt" using 1:2 w lines ls 1 title '\tiny{FFT64}', \
+     "../results/out_256_0_16_0.txt" using 1:2 w lines ls 2 title '\tiny{FFT256}', \
+     "../results/out_1024_0_16_0.txt" using 1:2 w lines ls 3 title '\tiny{FFT1024}', \
+     "../results/out_4096_0_16_0.txt" using 1:2 w lines ls 4 title '\tiny{FFT4096}'
 #pause -1 "Hit any key to continue"
