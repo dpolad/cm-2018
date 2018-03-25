@@ -3,7 +3,7 @@
 *.synctex.gz
 *.swp
 *-converted-to.pdf
-fft.o
+*.o
 fft
 tex/*.blg
 tex/*.out

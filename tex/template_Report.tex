@@ -168,6 +168,7 @@ Again there are three functions used depending on the data type:
 
 
 \subsubsection{Radix 4}
+\label{SUB:Radix4}
 This is the core function where the FFT coefficients are actually calculated. The function is recursive, and calls itself back until no more splitting is possible(when there is only one butterfly left), every time cutting the number of iterations by \sfrac{1}{4}.
 \paragraph{shifting}
 At each stage, the input data might be right shifted by a scale value, ranging from 0 to $log_2(\sqrt{N})$. This is because, according to (\ref{eq:FFT}), final coefficients must be divided by a factor $\sqrt{N}$. This shift can be split in all the stages of the Radix-4 FFT in order to achieve the maximum possible precision with the least number of saturations.
@@ -188,7 +189,7 @@ The formula used to calculate the SNR is:
 
 $$\mathit{SNR} = 10\log_{10}{\left(\frac{\sum_{n=0}^{N-1}{|X_n^f - X_n^d|^2}}{\sum_{n=0}^{N-1}{|X_n^f|^2}}\right)}$$
 
-Where $X_n^f$ is the n-th value of the floating point FFT and $X_n^d$ is the fixed point decimal of the same value.\\\\
+Where $X_n^f$ is the n-th value of the floating point FFT and $X_n^d$ is the fixed point version of the same value.\\\\
 Also at the end of the computation, if the current SNR is better than the stored maximum, that value is updated(\textit{maxSNR}) and the current scaling is saved(\textit{maxscale}).\\\\
 As shown in the prototype, many other parameters are required. Most of them are pretty self explained by the comments.
 One parameter worth mentioning is \textit{test}. It is an integer value passed from the calling function which is used to generate the input signal according to the following scheme:
@@ -222,33 +223,60 @@ The purpose of the main function, other than obviously interfacing with the user
 As one strong factor of the output quality is the scaling schedule(previously mentioned in the radix4 section), the main function simply tries all the possible combinations in an exhaustive manner and prints out only the best one. This is also the reason why the final execution time is so long, the complexity of the search is: $$\frac{(2n)!}{(n!)^2}$$
 where:
 $$n = log_2{\sqrt{N}}$$
+\pagebreak
 \section{Results}
 As suggested in the instruction, it is interesting to see the input signal strength versus the signal-to-distortion ratio to find the practical dynamic range.
 As there are no given numbers to use to decide the acceptable SNR threshold, a 50dB value has been chosen.
-\begin{figure}
-	\centering
-	\resizebox{1.0\textwidth}{!}{\input{q25shift}}
-	%%\input{cosine_DR}
-\end{figure}
-\begin{figure}
-	\centering
-	\resizebox{1.0\textwidth}{!}{\input{fourplot}}
-	%%\input{cosine_DR}
-\end{figure}
-\begin{figure}
-	\centering
-	\resizebox{1.0\textwidth}{!}{\input{cosine_DR}}
-	%%\input{cosine_DR}
-\end{figure}
+
+\subsection{Calculate the Input Dynamic Range}
 \begin{figure}
 	\centering
 	\resizebox{1.0\textwidth}{!}{\input{dyn_range}}
 	%%\input{cosine_DR}
+	\caption{Input dynamic range calculation.}
+	\label{Fig:DYN}
 \end{figure}
+As show in Figure \ref{Fig:DYN}, calculating the input dynamic range is not difficult. Every input signal shows almost the same behavior: the SNR is roughly increasing linear with the input dB, while at a certain point there is a sudden drop on the output quality. The input dynamic range is simply the range for which the output is higher than the threshold. In the example it spaces from -38dB to -6dB.
+\subsection{Fixed Point Saturation}
 \begin{figure}
 	\centering
 	\resizebox{1.0\textwidth}{!}{\input{cosineFFT}}
+	\caption{Input dynamic range calculation.}
+	\label{Fig:COSINE}
 \end{figure}
+One particular drawback of fixed point representation is saturation. In our case this particular phenomenon can happen in case of additions for which the result inevitably fall outside of the possible range. Fortunately, as discussed in \ref{SUB:Radix4}, FFT shifting helps to overcome this problem.
+However, at some point, even after the maximum scaling applied directly at the input, the output will saturate. Moving to a 25-bit representation could enlarge the input dynamic range and provide good results where the 16-bit reaches its limit.\\\\
+Figure \ref{Fig:COSINE} shows on the left the cosine input signal, and on the right the same FFT computed in three different bit representations. At this point signal input strength Q1.15 is no more able to avoid saturations, and the resulting FFT spectrum is unavoidably compromised. Q10.15 instead is still in its dynamic range and provide an almost identical spectrum.
+\subsection{FFT Output Comparison}
+\begin{figure}
+	\centering
+	\resizebox{1.0\textwidth}{!}{\input{fourplot}}
+
+	%%\input{cosine_DR}
+	\caption{Output comparison.}
+	\label{Fig:COMP}
+\end{figure}
+First of all it is interesting to see the output of the program with respect to the variation of input signal and FFT size. Figure \ref{Fig:COMP} shows the output of the 16-bit fixed point simulation.\\
+One notable aspect is that the input dynamic range of the cosine is more dependent on the FFT size compared to the others. This is probably due to the particular Fourier transform of the cosine, which is composed of only two components. These component are noticeably higher than those that could be found in the FFT of a pure noise signal, and clearly will produce many more saturations.
+\subsection{25-bit Decimal Representation}
+In order to properly compare the two fixed point representations, the input source needs to be exactly the same. It is set as 16 bits. In order to put these 16 bits into a 25-bit numbers without losing precision, many different solutions are possible. If we want to keep the same magnitude as the 16-bit version, then a Q1.24 is the only solution, but it is possible to assign more bits to the integer value, such as Q2.23 or Q5.20, down to Q10.15. The results of this comparison are shown in Figure \ref{Fig:25bit} (please note that the input range is different than the others graphs found in this report).\\
+
+As can be seen from the graph, the maximum acceptable input strength increases together with the number of bits of the integer part, topping at 35dB with Q10.15. One less evident but still important aspect is that, apart from saturation, with the same input signal, having more fractional bits produces better results in terms of SNR.
+
+\begin{figure}
+	\centering
+	\resizebox{1.0\textwidth}{!}{\input{q25shift}}
+	\caption{Comparison of 25-bit fixed point representations.}
+	\label{Fig:25bit}
+\end{figure}
+%%\begin{figure}
+%%	\centering
+%%	\resizebox{1.0\textwidth}{!}{\input{cosine_DR}}
+%%	%%\input{cosine_DR}
+%%\end{figure}
+
+
+
 
 \section{Code}
 \subsection{complex.h}
