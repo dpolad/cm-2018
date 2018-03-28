@@ -387,6 +387,9 @@ void fft_distortion_test(int N,         // dimension of FFT under test
     data32[i].i=0;
   }
 
+  randominit();
+  double rv;
+
   
   switch (test) {
     //*0.05 = 1/20
@@ -408,12 +411,12 @@ void fft_distortion_test(int N,         // dimension of FFT under test
       QAM_input(data,pow(10,.05*input_dB),N,N,1);
 
     case 3:    // 16-QAM
-    //  for (i=0; i<N; i++){
-    //      while
-    //      rv=gaussdouble(0.0,1.0);
-
-     //   data[i].r=pow(10,.05*input_dB)*cos(2.0*PI*0.062625*i)*sqrt(2);
-      //}
+    for (i=0; i<N; i++){
+        do
+            rv=gaussdouble(0.0,1.0);
+        while(rv > 1.0 || rv < -1.0);
+        data[i].r=pow(10,.05*input_dB)*rv*sqrt(2);
+    } 
       break;
 
       break;
@@ -521,7 +524,6 @@ int main(int argc, char *argv[])
   N = atoi(argv[1]);
   data_t = atoi(argv[3]);
   shift = atoi(argv[4]);
-
   test = atoi(argv[2]);
 
   if (N!=64 && N!=256 && N!=1024 && N!=4096) {
@@ -529,8 +531,8 @@ int main(int argc, char *argv[])
     exit(-1);
   }
 
-  if ((test>2) || (test<0)) {
-    printf("test must be in (0-2)\n");
+  if ((test>3) || (test<0)) {
+    printf("test must be in (0-3)\n");
     exit(-1);
   }
   

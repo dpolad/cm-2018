@@ -30,7 +30,7 @@
 \section{Introduction}
 
 The goal of this report is to illustrate the work done on a FFT simulator in for the CompMeth course in EURECOM.
-The functions developed are able to compute the FFT of a given signal, changing the input signal type, amplitude, number of points and a some other parameters that will be described later.
+The functions developed are able to compute the FFT of a given signal, changing the input signal type, amplitude, number of points and some other parameters that will be described later.
 
 \section{Code Explanation}
 \subsection{taus.c}
@@ -47,7 +47,7 @@ This piece of code was originally not working because it was developed for a 32-
 \subsection{complex.h}
 This file contains the definitions of data types used in the entire project. These can be double precision floating point numbers, 32-bit integers or 16-bit integers.
 \paragraph{modifications:}
-Like the previous file, this was not fully portable too, due to machine-dependent data types. Setting \textit{int32\_t} and \textit{int16\_t} should fix this portability issue. 
+Like the previous file, this was not fully portable too, due to machine-dependent data types. Setting \textit{int32\_t} and \textit{int16\_t} should fix this portability issue for any machine. A comparison between the original and modified code can be found in Listings \ref{CODE:CMXO},\ref{CODE:CMXM}.
 
 \subsection{fixed\_point.c}
 Here we define the functions used to compute fixed point saturated addition and multiplication. These functions are available both in a 16-bit and 25-bit version.
@@ -61,9 +61,9 @@ This is the main core of the application, where all the processing of the FFT is
 \subsubsection{Twiddle factor}
 The functions:
 \begin{itemize}
-\item void twiddle(struct complex *W, int N, double stuff)
-\item void twiddle\_fixed(struct complex16 *W, int N, double stuff)         
-\item void twiddle\_fixed\_Q17(struct complex32 *W, int N, double stuff)
+	\item void twiddle(struct complex *W, int N, double stuff)
+	\item void twiddle\_fixed(struct complex16 *W, int N, double stuff)         
+	\item void twiddle\_fixed\_Q17(struct complex32 *W, int N, double stuff)
 \end{itemize}
 Are used to compute the twiddle factor. As the prototype indicates, each function is required whether we are using floating points, Q15 or Q24 representations.\\
 Following these formula, it's straightforward to understand the computations done in this function and the role of the \textit{stuff} parameter.
@@ -76,9 +76,10 @@ $$\mathit{stuff} = kn$$
 
 \paragraph{modifications:}
 At the beginning, only the floating point twiddle factor function was present.
+The code can be found at the end of this document in Listing \ref{CODE:TWID}
 
 \paragraph{quantization:}
-As can be seen in the code, in the fixed point version of the function, a scaling factor is needed to convert from floating point to fixed point. (i.e. $\pm32767.0$ for 16-bit).
+As can be seen in the code, in the fixed point version of the function, a scaling factor is needed to convert from floating to fixed point. (i.e. $\pm32767.0$ for 16-bit).
 The range for a Q15 fixed point number goes from $-1$ to $1-2^{-15}$, as a consequence, it is intrinsically not possible to represent exactly the number 1.\\
 Radix-4 twiddle factors have the characteristic that the real part ranges from 0 to 1, and the imaginary part from 0 to -1.
 The programmer is left with two options: either produce an unbiased result, using $\pm32767.0$, or use $-32768.0$ only for imaginary part and $+32767.0$ for the real part.\\
@@ -165,6 +166,7 @@ Again there are three functions used depending on the data type:
 	
 	\paragraph{modifications}
 	A weird bug was discovered and fixed in the fixed point version of the function. As can be seen in the two code listings, the original code was applying the scaling only to those coefficients that were swapped. Fixing this bug strongly improved the output SNR, especially in the low dB input where the scaling is more likely to be executed at the reordering phase.
+	A comparison between the two codes can be found in Listings \ref{CODE:REORDERO},\ref{CODE:REORDERM}.
 
 
 \subsubsection{Radix 4}
@@ -174,15 +176,16 @@ This is the core function where the FFT coefficients are actually calculated. Th
 At each stage, the input data might be right shifted by a scale value, ranging from 0 to $log_2(\sqrt{N})$. This is because, according to (\ref{eq:FFT}), final coefficients must be divided by a factor $\sqrt{N}$. This shift can be split in all the stages of the Radix-4 FFT in order to achieve the maximum possible precision with the least number of saturations.
 \begin{itemize}
 	\item radix4(struct complex *x, int N)
-	\item TODO
-	\item TODO
+	\item void radix4\_fixed\_Q15(struct complex16 *x, int N, uns char *scale, uns char stage)
+	\item void radix4\_fixed\_Q24(struct complex32 *x, int N, uns char *scale, uns char stage)
 \end{itemize}
 As for the other functions this one is also present three times, depending on input data type.
 \paragraph{modifications}
-Other than constructing the functions for fixed point arithmetics, a simple control on the twiddle factor was developed in order to skip multiplications when the twiddle factor is equal to 1. This would slightly reduce computation time and, more important, avoid possible precision losses. 
+Other than constructing the functions for fixed point arithmetics, a simple control on the twiddle factor was developed in order to skip multiplications when the twiddle factor is equal to 1. This would slightly reduce computation time and, more important, avoid possible precision losses.
+The code of the 16-bit fixed point version can be found in Listing \ref{CODE:RADIX4}
 
 \subsubsection{QAM input}
-This helper function is called in the two cases when PSK or QAM input is needed. This will simply fill the input vector with the right numbers. This function was not touched.
+This helper function is called in the two cases when PSK or QAM input is needed, it will simply fill the input vector with the right numbers. This function was left untouched.
 \subsubsection{distortion test}
 The purpose of this function is to run a single simulation of an FFT both in double precision arithmetic and one between 16-bit or 25-bit fixed point arithmetic and produce an output SNR value between the two.
 The formula used to calculate the SNR is:
@@ -197,10 +200,11 @@ One parameter worth mentioning is \textit{test}. It is an integer value passed f
 	\item[0 $\rightarrow$] fixed frequency cosine signal
 	\item[1 $\rightarrow$] PSK white noise signal
 	\item[2 $\rightarrow$] 16QAM white noise signal
+	\item[3 $\rightarrow$] Gaussian white noise signal
 \end{description}
 
 Most of the code in this function was left untouched, with the exception of the extension to Q24 fixed point structure, leading to the inclusion of \textit{data\_t} and \textit{shift} parameters.
-The first is a simple selector of data type, while the latter will be discussed later.
+The first is a simple selector of data type, while the latter will be discussed later in \ref{25BIT}.
 
 \begin{lstlisting}
 void fft_distortion_test(
@@ -220,7 +224,7 @@ int shift)                          // 25-bit only pre/post shift
 
 \subsubsection{main}
 The purpose of the main function, other than obviously interfacing with the user and extrapolate input parameters, is to actually launch the executions of the simulation.
-As one strong factor of the output quality is the scaling schedule(previously mentioned in the radix4 section), the main function simply tries all the possible combinations in an exhaustive manner and prints out only the best one. This is also the reason why the final execution time is so long, the complexity of the search is: $$\frac{(2n)!}{(n!)^2}$$
+Considering that one strong factor of the output quality is the scaling schedule(previously mentioned in \ref{SUB:Radix4}), the main function simply tries all the possible combinations in an exhaustive manner and prints out only the best one. This is also the reason why the final execution time is so long, the complexity of the search is: $$\frac{(2n)!}{(n!)^2}$$
 where:
 $$n = log_2{\sqrt{N}}$$
 \pagebreak
@@ -236,7 +240,7 @@ As there are no given numbers to use to decide the acceptable SNR threshold, a 5
 	\caption{Input dynamic range calculation.}
 	\label{Fig:DYN}
 \end{figure}
-As show in Figure \ref{Fig:DYN}, calculating the input dynamic range is not difficult. Every input signal shows almost the same behavior: the SNR is roughly increasing linear with the input dB, while at a certain point there is a sudden drop on the output quality. The input dynamic range is simply the range for which the output is higher than the threshold. In the example it spaces from -38dB to -6dB.
+As show in Figure \ref{Fig:DYN}, calculating the input dynamic range is not difficult. Every input signal shows almost the same behavior: the SNR is roughly increasing linearly with the input dB, while at a certain point there is a sudden drop on the output quality. The input dynamic range is simply the range for which the output is higher than the threshold. In the example it spaces from -38dB to -6dB.
 \subsection{Fixed Point Saturation}
 \begin{figure}
 	\centering
@@ -259,7 +263,8 @@ Figure \ref{Fig:COSINE} shows on the left the cosine input signal, and on the ri
 First of all it is interesting to see the output of the program with respect to the variation of input signal and FFT size. Figure \ref{Fig:COMP} shows the output of the 16-bit fixed point simulation.\\
 One notable aspect is that the input dynamic range of the cosine is more dependent on the FFT size compared to the others. This is probably due to the particular Fourier transform of the cosine, which is composed of only two components. These component are noticeably higher than those that could be found in the FFT of a pure noise signal, and clearly will produce many more saturations.
 \subsection{25-bit Decimal Representation}
-In order to properly compare the two fixed point representations, the input source needs to be exactly the same. It is set as 16 bits. In order to put these 16 bits into a 25-bit numbers without losing precision, many different solutions are possible. If we want to keep the same magnitude as the 16-bit version, then a Q1.24 is the only solution, but it is possible to assign more bits to the integer value, such as Q2.23 or Q5.20, down to Q10.15. The results of this comparison are shown in Figure \ref{Fig:25bit} (please note that the input range is different than the others graphs found in this report).\\
+\label{25BIT}
+In order to properly compare the two fixed point representations, the input source needs to be exactly the same( in this case is set as 16 bits of precision). In order to put these 16 bits into a 25-bit numbers without cutting out digits, many different solutions are possible. If we want to keep the same magnitude as the 16-bit version, then a Q1.24 is the only solution, but it is possible to assign more bits to the integer value, such as Q2.23 or Q5.20, down to Q10.15. The results of this comparison are shown in Figure \ref{Fig:25bit} (please note that the input range is different than the others graphs found in this report).\\
 
 As can be seen from the graph, the maximum acceptable input strength increases together with the number of bits of the integer part, topping at 35dB with Q10.15. One less evident but still important aspect is that, apart from saturation, with the same input signal, having more fractional bits produces better results in terms of SNR.
 
@@ -269,61 +274,46 @@ As can be seen from the graph, the maximum acceptable input strength increases t
 	\caption{Comparison of 25-bit fixed point representations.}
 	\label{Fig:25bit}
 \end{figure}
-%%\begin{figure}
-%%	\centering
-%%	\resizebox{1.0\textwidth}{!}{\input{cosine_DR}}
-%%	%%\input{cosine_DR}
-%%\end{figure}
-
-
-
 
 \section{Code}
-\subsection{complex.h}
 \noindent\begin{minipage}{.45\textwidth}
-    \begin{lstlisting}[caption=code 1 1,frame=tlrb, language=C]{Name}
-    struct complex{
+\begin{lstlisting}[caption=complex.h - original,label={CODE:CMXO},frame=tlrb, language=C]{Name}
+struct complex{
     double r;
     double i;
     };
 
-    struct complex16
-    {
+struct complex16{
     short r;
     short i;
 };
 
-    struct complex32
-    {
+struct complex32{
     int r;
     int i;
 };
     \end{lstlisting}
 \end{minipage}\hfill
 \begin{minipage}{.45\textwidth}
-    \begin{lstlisting}[caption=code 2,frame=tlrb, language=C]{Name}
-    struct complex{
-        double r;
+    \begin{lstlisting}[caption=complex.h - modified, label={CODE:CMXM}, frame=tlrb, language=C]{Name}
+struct complex{
+    double r;
     double i;
 };
 
-    struct complex16{
-        int16_t r;
+struct complex16{
+    int16_t r;
     int16_t i;
 };
 
-    struct complex32{
-        int32_t r;
+struct complex32{
+    int32_t r;
     int32_t i;
 };
     \end{lstlisting}
 \end{minipage}
-
-
-
-
-\subsection{fft.c}
-\begin{lstlisting}[caption=code 3,frame=tlrb, language=C]{Name}
+\newpage
+\begin{lstlisting}[caption=fft.c - twiddle factors, label={CODE:TWID},frame=tlrb, language=C]{Name}
 void twiddle(struct complex *W, int N, double stuff){
     W->r=cos(stuff*2.0*PI/(double)N);
     W->i=-sin(stuff*2.0*PI/(double)N);
@@ -341,7 +331,43 @@ W->i=(int32_t)(-131072.0*sin(stuff*2.0*PI/(double)N));
 \end{lstlisting}
 
 \noindent\begin{minipage}{.45\textwidth}
-    \begin{lstlisting}[caption=code 4,frame=tlrb, language=C]{Name}
+	\begin{lstlisting}[caption=fft.c - bit reordering - original, label={CODE:REORDERO}, frame=tlrb, language=C]{Name}
+void bit_r4_reorder_fixed_Q15(
+struct complex16 *W,
+int N,
+char scale)
+{
+  int bits, i, j, k;
+  short tempr, tempi;
+
+
+
+
+
+
+  for (i=0; i<MAXPOW; i++)
+    if (pow_2[i]==N) bits=i;
+
+  for (i=0; i<N; i++){
+    j=0;
+    for (k=0; k<bits; k+=2){
+      ...
+    }
+
+    if (j>i){
+      tempr=W[i].r>>scale;
+      tempi=W[i].i>>scale;
+      W[i].r=W[j].r>>scale;
+      W[i].i=W[j].i>>scale;
+      W[j].r=tempr;
+      W[j].i=tempi;
+    }
+  }
+}
+\end{lstlisting}
+\end{minipage}\hfill
+\begin{minipage}{.45\textwidth}
+\begin{lstlisting}[caption=fft.c - bit reordering - modified, label={CODE:REORDERM}, frame=tlrb, language=C]{Name}
 void bit_r4_reorder_fixed_Q15(
 struct complex16 *W,
 int N,
@@ -356,66 +382,28 @@ char scale)
 	}
 
   for (i=0; i<MAXPOW; i++)
-  	if (pow_2[i]==N) bits=i;
+    if (pow_2[i]==N) bits=i;
 
   for (i=0; i<N; i++){
-  	j=0;
+    j=0;
    	for (k=0; k<bits; k+=2){
-   	...
+   	  ...
    	}
 
-	if (j>i){
-	  tempr=W[i].r;
-	  tempi=W[i].i;
-	  W[i].r=W[j].r;
-	  W[i].i=W[j].i;
-	  W[j].r=tempr;
-	  W[j].i=tempi;
-	  }
-	}
+    if (j>i){
+      tempr=W[i].r;
+      tempi=W[i].i;
+      W[i].r=W[j].r;
+      W[i].i=W[j].i;
+      W[j].r=tempr;
+      W[j].i=tempi;
+    }
   }
+}
     \end{lstlisting}
-\end{minipage}\hfill
-\begin{minipage}{.45\textwidth}
-    \begin{lstlisting}[caption=code 5,frame=tlrb, language=C]{Name}
-void bit_r4_reorder_fixed_Q15(
-struct complex16 *W,
-int N,
-char scale)
-{
-  int bits, i, j, k;
-  short tempr, tempi;
-
-
-
-
-
-
-
-for (i=0; i<MAXPOW; i++)
-if (pow_2[i]==N) bits=i;
-
-for (i=0; i<N; i++){
-    j=0;
-for (k=0; k<bits; k+=2){
-    ...
-}
-
-if (j>i){
-    tempr=W[i].r>>scale;
-tempi=W[i].i>>scale;
-W[i].r=W[j].r>>scale;
-W[i].i=W[j].i>>scale;
-W[j].r=tempr;
-W[j].i=tempi;
-}
-}
-}
-
-    \end{lstlisting}
-\end{minipage}
-
-\begin{lstlisting}[caption=code 5,frame=tlrb, language=C]{Name}
+\end{minipage}    
+\newpage
+\begin{lstlisting}[caption=fft.c - radix4 Q15,label={CODE:RADIX4},frame=tlrb, language=C]{Name}
 void radix4_fixed_Q15(struct complex16 *x,   // Input in Q15 format
 int N,                 // Size of FFT
 unsigned char *scale,  // Pointer to scaling schedule
@@ -431,39 +419,26 @@ N2=N/4;
 for (n2=0; n2<N2; n2++){
     // scale Butterfly input
 x[n2].r          >>= scale[stage];
-x[N2+n2].r       >>= scale[stage];
-x[(2*N2) + n2].r >>= scale[stage];
-x[(3*N2) + n2].r >>= scale[stage];
-x[n2].i          >>= scale[stage];
-x[N2+n2].i       >>= scale[stage];
-x[(2*N2) + n2].i >>= scale[stage];
+...
 x[(3*N2) + n2].i >>= scale[stage];
 
 // Radix 4 Butterfly
 bfly[0].r = SAT_ADD16(  SAT_ADD16(x[n2].r, x[N2 + n2].r) ,
-            SAT_ADD16(x[2*N2+n2].r, x[3*N2+n2].r)
-);
+            SAT_ADD16(x[2*N2+n2].r, x[3*N2+n2].r));
 bfly[0].i = SAT_ADD16(  SAT_ADD16(x[n2].i, x[N2 + n2].i) ,
-            SAT_ADD16(x[2*N2+n2].i, x[3*N2+n2].i)
-);
+            SAT_ADD16(x[2*N2+n2].i, x[3*N2+n2].i));
 bfly[1].r = SAT_ADD16(  SAT_ADD16(x[n2].r, x[N2 + n2].i) ,
-           -SAT_ADD16(x[2*N2+n2].r, x[3*N2+n2].i)
-);
+           -SAT_ADD16(x[2*N2+n2].r, x[3*N2+n2].i));
 bfly[1].i = SAT_ADD16(  SAT_ADD16(x[n2].i, -x[N2 + n2].r) ,
-            SAT_ADD16(-x[2*N2+n2].i, x[3*N2+n2].r)
-);
+            SAT_ADD16(-x[2*N2+n2].i, x[3*N2+n2].r));
 bfly[2].r = SAT_ADD16(  SAT_ADD16(x[n2].r, -x[N2 + n2].r) ,
-            SAT_ADD16(x[2*N2+n2].r, -x[3*N2+n2].r)
-);
+            SAT_ADD16(x[2*N2+n2].r, -x[3*N2+n2].r));
 bfly[2].i = SAT_ADD16(  SAT_ADD16(x[n2].i, -x[N2 + n2].i) ,
-            SAT_ADD16(x[2*N2+n2].i, -x[3*N2+n2].i)
-);
+            SAT_ADD16(x[2*N2+n2].i, -x[3*N2+n2].i));
 bfly[3].r = SAT_ADD16(  SAT_ADD16(x[n2].r, -x[N2 + n2].i) ,
-            SAT_ADD16(-x[2*N2+n2].r, x[3*N2+n2].i)
-);
+            SAT_ADD16(-x[2*N2+n2].r, x[3*N2+n2].i));
 bfly[3].i = SAT_ADD16(  SAT_ADD16(x[n2].i, x[N2 + n2].r) ,
-            SAT_ADD16(-x[2*N2+n2].i, -x[3*N2+n2].r)
-);
+            SAT_ADD16(-x[2*N2+n2].i, -x[3*N2+n2].r));
 
 // In-place results
 x[n2].r = bfly[0].r;
@@ -486,7 +461,5 @@ for (k1=0; k1<N1; k1++){
 }
 \end{lstlisting}
 
-\bibliographystyle{alpha}
-\bibliography{sample}
 
 \end{document}
