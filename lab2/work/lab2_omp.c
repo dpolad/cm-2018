@@ -7,6 +7,9 @@
 #include <stdio.h>
 #include <time.h>
 #include <stdlib.h>
+#ifdef OMP
+#include <omp.h>
+#endif
 #define TRIALS 1000000
 
 // example SIMD macros, not necessary to be used, write your own
@@ -77,6 +80,9 @@ int main(int argc, char *argv[]){
 
     reset_meas(&ts);
 
+#ifdef OMP
+#pragma omp parallel
+#endif
 {
     for(i=0;i<TRIALS;i++){
         start_meas(&ts);
@@ -93,6 +99,9 @@ int main(int argc, char *argv[]){
     printf("\n");
 
     reset_meas(&ts);
+#ifdef OMP
+#pragma omp for
+#endif
     for(i=0;i<TRIALS;i++){
         start_meas(&ts);
         componentwise_multiply_real_sse4(x,y,z,SIZE);
@@ -106,18 +115,25 @@ int main(int argc, char *argv[]){
     printf("\n");
 
     reset_meas(&ts);
-
+#ifdef OMP
+#pragma omp parallel
+#endif
+{
     for(i=0;i<TRIALS;i++){
         start_meas(&ts);
         componentwise_multiply_real_avx2(x,y,z,SIZE);
         stop_meas(&ts);
     }
-
+}
     printf("AVX2:\n");
     printf("max:    %10lld\n",ts.max);
     printf("trials: %10d\n",ts.trials);
     printf("avg:    %10.0f\n",(double)(ts.diff/ts.trials));
     printf("\n");
+
+    printf("%.20f\n",omp_get_wtick());
+    printf("%f\n",omp_get_wtime());
+    printf("%f\n",omp_get_wtime());
 
     return 0;
 }

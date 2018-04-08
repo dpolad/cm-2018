@@ -3,7 +3,6 @@
 #endif
 
 typedef struct {
-
   long long in;
   long long diff;
   long long max;
@@ -55,7 +54,7 @@ static inline void stop_meas(time_stats_t *ts) {
     {
       ts->diff += (out-ts->in);
       if ((out-ts->in) > ts->max)
-	ts->max = out-ts->in;
+          ts->max = out-ts->in;
       
     }
 }

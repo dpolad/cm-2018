@@ -1,20 +1,25 @@
 CC = gcc
 
-CFLAGS = -Wall -mmmx -msse -msse2 -mssse3 -msse4
+CFLAGS = -Wall -mmmx -msse -msse2 -mssse3 -msse4 -mavx -march=native -fopenmp
 
 # Utility routines
-UTIL_OBJS += lab2.o 
 
-#
+all: lab2.o lab2_omp.o
 
-all: fft
+lab2.o: lab2.c 
+	$(CC) $(CFLAGS) -O0 $< -o 0_$@ 
+	$(CC) $(CFLAGS) -O1 $< -o 1_$@ 
+	$(CC) $(CFLAGS) -O2 $< -o 2_$@ 
+	$(CC) $(CFLAGS) -O3 $< -o 3_$@ 
 
-OBJ = $(UTIL_OBJS)
-$(OBJ) : %.o : %.c
-	$(CC) -c $(CFLAGS) -o $@ $<
+lab2_omp.o: lab2_omp.c 
+	$(CC) $(CFLAGS) -DOMP -O0 $< -o 0_$@ 
+	$(CC) $(CFLAGS) -DOMP -O1 $< -o 1_$@ 
+	$(CC) $(CFLAGS) -DOMP -O2 $< -o 2_$@ 
+	$(CC) $(CFLAGS) -DOMP -O3 $< -o 3_$@ 
 
-ffttest: $(OBJ) lab2.o
-	$(CC)  $(OBJ) lab2.o -o lab2
+dump: lab2.o
+	objdump -D lab2.o
 
 clean:
 	rm -f *.o 

@@ -1,0 +1,18 @@
+changed makefile
+
+moved into scalr function, using the multiply of c to let the compiler handle it
+
+missing include with imm. from manual foudn isntruction that perfectly express our needs in a single operation: mulhrs_epi16
+
+to avoid strange behavior, make user stick to a multiple of 16 as number of items ( to handle also 256 bit AVX)
+
+need to specify -mavx to enable 256bit SIMD
+
+simplied parameters by setting march-native
+
+AVX instructions cause segmentation fault due to unaligned memory (the operation itself does not require aligned memory, but load and sotre does)
+
+fixed this by changing malloc with aligned_alloc(32, that enforces a 32-byte align on malloc, thus solving th problem at the root)
+
+#of iterations vs variance
+size of data/ improvement vs linear (optimum)
