@@ -16,3 +16,4 @@ fixed this by changing malloc with aligned_alloc(32, that enforces a 32-byte ali
 
 #of iterations vs variance
 size of data/ improvement vs linear (optimum)
+openmp see difference vs linear ideal speedup
