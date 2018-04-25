@@ -1,0 +1,13 @@
+set terminal wxt size 900,900
+
+plot "3_res_0_0.txt" using 1:2 w lines ls 1, \
+     "3_res_1_0.txt" using 1:2 w lines ls 2, \
+     "3_res_2_0.txt" using 1:2 w lines ls 3, \
+     "3_res_0_1.txt" using 1:2 w lines ls 4, \
+     "3_res_1_1.txt" using 1:2 w lines ls 5, \
+     "3_res_2_1.txt" using 1:2 w lines ls 6, \
+     "3_res_0_2.txt" using 1:2 w lines ls 7, \
+     "3_res_1_2.txt" using 1:2 w lines ls 8, \
+     "3_res_2_2.txt" using 1:2 w lines ls 9
+
+pause -1 "Hit any key to continue"

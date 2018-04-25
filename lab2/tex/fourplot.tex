@@ -1,0 +1,279 @@
+% GNUPLOT: LaTeX picture with Postscript
+\begingroup
+  \makeatletter
+  \providecommand\color[2][]{%
+    \GenericError{(gnuplot) \space\space\space\@spaces}{%
+      Package color not loaded in conjunction with
+      terminal option `colourtext'%
+    }{See the gnuplot documentation for explanation.%
+    }{Either use 'blacktext' in gnuplot or load the package
+      color.sty in LaTeX.}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\includegraphics[2][]{%
+    \GenericError{(gnuplot) \space\space\space\@spaces}{%
+      Package graphicx or graphics not loaded%
+    }{See the gnuplot documentation for explanation.%
+    }{The gnuplot epslatex terminal needs graphicx.sty or graphics.sty.}%
+    \renewcommand\includegraphics[2][]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \@ifundefined{ifGPcolor}{%
+    \newif\ifGPcolor
+    \GPcolortrue
+  }{}%
+  \@ifundefined{ifGPblacktext}{%
+    \newif\ifGPblacktext
+    \GPblacktextfalse
+  }{}%
+  % define a \g@addto@macro without @ in the name:
+  \let\gplgaddtomacro\g@addto@macro
+  % define empty templates for all commands taking text:
+  \gdef\gplbacktext{}%
+  \gdef\gplfronttext{}%
+  \makeatother
+  \ifGPblacktext
+    % no textcolor at all
+    \def\colorrgb#1{}%
+    \def\colorgray#1{}%
+  \else
+    % gray or color?
+    \ifGPcolor
+      \def\colorrgb#1{\color[rgb]{#1}}%
+      \def\colorgray#1{\color[gray]{#1}}%
+      \expandafter\def\csname LTw\endcsname{\color{white}}%
+      \expandafter\def\csname LTb\endcsname{\color{black}}%
+      \expandafter\def\csname LTa\endcsname{\color{black}}%
+      \expandafter\def\csname LT0\endcsname{\color[rgb]{1,0,0}}%
+      \expandafter\def\csname LT1\endcsname{\color[rgb]{0,1,0}}%
+      \expandafter\def\csname LT2\endcsname{\color[rgb]{0,0,1}}%
+      \expandafter\def\csname LT3\endcsname{\color[rgb]{1,0,1}}%
+      \expandafter\def\csname LT4\endcsname{\color[rgb]{0,1,1}}%
+      \expandafter\def\csname LT5\endcsname{\color[rgb]{1,1,0}}%
+      \expandafter\def\csname LT6\endcsname{\color[rgb]{0,0,0}}%
+      \expandafter\def\csname LT7\endcsname{\color[rgb]{1,0.3,0}}%
+      \expandafter\def\csname LT8\endcsname{\color[rgb]{0.5,0.5,0.5}}%
+    \else
+      % gray
+      \def\colorrgb#1{\color{black}}%
+      \def\colorgray#1{\color[gray]{#1}}%
+      \expandafter\def\csname LTw\endcsname{\color{white}}%
+      \expandafter\def\csname LTb\endcsname{\color{black}}%
+      \expandafter\def\csname LTa\endcsname{\color{black}}%
+      \expandafter\def\csname LT0\endcsname{\color{black}}%
+      \expandafter\def\csname LT1\endcsname{\color{black}}%
+      \expandafter\def\csname LT2\endcsname{\color{black}}%
+      \expandafter\def\csname LT3\endcsname{\color{black}}%
+      \expandafter\def\csname LT4\endcsname{\color{black}}%
+      \expandafter\def\csname LT5\endcsname{\color{black}}%
+      \expandafter\def\csname LT6\endcsname{\color{black}}%
+      \expandafter\def\csname LT7\endcsname{\color{black}}%
+      \expandafter\def\csname LT8\endcsname{\color{black}}%
+    \fi
+  \fi
+    \setlength{\unitlength}{0.0500bp}%
+    \ifx\gptboxheight\undefined%
+      \newlength{\gptboxheight}%
+      \newlength{\gptboxwidth}%
+      \newsavebox{\gptboxtext}%
+    \fi%
+    \setlength{\fboxrule}{0.5pt}%
+    \setlength{\fboxsep}{1pt}%
+\begin{picture}(10080.00,10080.00)%
+    \gplgaddtomacro\gplbacktext{%
+      \csname LTb\endcsname%
+      \put(396,5634){\makebox(0,0)[r]{\strut{}\footnotesize{$0$}}}%
+      \csname LTb\endcsname%
+      \put(396,6107){\makebox(0,0)[r]{\strut{}\footnotesize{$10$}}}%
+      \csname LTb\endcsname%
+      \put(396,6580){\makebox(0,0)[r]{\strut{}\footnotesize{$20$}}}%
+      \csname LTb\endcsname%
+      \put(396,7053){\makebox(0,0)[r]{\strut{}\footnotesize{$30$}}}%
+      \csname LTb\endcsname%
+      \put(396,7527){\makebox(0,0)[r]{\strut{}\footnotesize{$40$}}}%
+      \csname LTb\endcsname%
+      \put(396,8000){\makebox(0,0)[r]{\strut{}\footnotesize{$50$}}}%
+      \csname LTb\endcsname%
+      \put(396,8473){\makebox(0,0)[r]{\strut{}\footnotesize{$60$}}}%
+      \csname LTb\endcsname%
+      \put(396,8946){\makebox(0,0)[r]{\strut{}\footnotesize{$70$}}}%
+      \csname LTb\endcsname%
+      \put(396,9419){\makebox(0,0)[r]{\strut{}\footnotesize{$80$}}}%
+      \csname LTb\endcsname%
+      \put(528,5414){\makebox(0,0){\strut{}\footnotesize{$-60$}}}%
+      \csname LTb\endcsname%
+      \put(1192,5414){\makebox(0,0){\strut{}\footnotesize{$-50$}}}%
+      \csname LTb\endcsname%
+      \put(1856,5414){\makebox(0,0){\strut{}\footnotesize{$-40$}}}%
+      \csname LTb\endcsname%
+      \put(2520,5414){\makebox(0,0){\strut{}\footnotesize{$-30$}}}%
+      \csname LTb\endcsname%
+      \put(3183,5414){\makebox(0,0){\strut{}\footnotesize{$-20$}}}%
+      \csname LTb\endcsname%
+      \put(3847,5414){\makebox(0,0){\strut{}\footnotesize{$-10$}}}%
+      \csname LTb\endcsname%
+      \put(4511,5414){\makebox(0,0){\strut{}\footnotesize{$0$}}}%
+    }%
+    \gplgaddtomacro\gplfronttext{%
+      \csname LTb\endcsname%
+      \put(88,7526){\rotatebox{-270}{\makebox(0,0){\strut{}\footnotesize{SNR [dB]}}}}%
+      \put(2519,5194){\makebox(0,0){\strut{}\footnotesize{input [dB]}}}%
+      \put(2519,9749){\makebox(0,0){\strut{}\shortstack{16-bit Fixed Point \\Cosine $f=0.1$ Q1.15}}}%
+      \csname LTb\endcsname%
+      \put(660,6467){\makebox(0,0)[l]{\strut{}\tiny{FFT64}}}%
+      \csname LTb\endcsname%
+      \put(660,6247){\makebox(0,0)[l]{\strut{}\tiny{FFT256}}}%
+      \csname LTb\endcsname%
+      \put(660,6027){\makebox(0,0)[l]{\strut{}\tiny{FFT1024}}}%
+      \csname LTb\endcsname%
+      \put(660,5807){\makebox(0,0)[l]{\strut{}\tiny{FFT4096}}}%
+    }%
+    \gplgaddtomacro\gplbacktext{%
+      \csname LTb\endcsname%
+      \put(5436,5634){\makebox(0,0)[r]{\strut{}\footnotesize{$0$}}}%
+      \csname LTb\endcsname%
+      \put(5436,6107){\makebox(0,0)[r]{\strut{}\footnotesize{$10$}}}%
+      \csname LTb\endcsname%
+      \put(5436,6580){\makebox(0,0)[r]{\strut{}\footnotesize{$20$}}}%
+      \csname LTb\endcsname%
+      \put(5436,7053){\makebox(0,0)[r]{\strut{}\footnotesize{$30$}}}%
+      \csname LTb\endcsname%
+      \put(5436,7527){\makebox(0,0)[r]{\strut{}\footnotesize{$40$}}}%
+      \csname LTb\endcsname%
+      \put(5436,8000){\makebox(0,0)[r]{\strut{}\footnotesize{$50$}}}%
+      \csname LTb\endcsname%
+      \put(5436,8473){\makebox(0,0)[r]{\strut{}\footnotesize{$60$}}}%
+      \csname LTb\endcsname%
+      \put(5436,8946){\makebox(0,0)[r]{\strut{}\footnotesize{$70$}}}%
+      \csname LTb\endcsname%
+      \put(5436,9419){\makebox(0,0)[r]{\strut{}\footnotesize{$80$}}}%
+      \csname LTb\endcsname%
+      \put(5568,5414){\makebox(0,0){\strut{}\footnotesize{$-60$}}}%
+      \csname LTb\endcsname%
+      \put(6232,5414){\makebox(0,0){\strut{}\footnotesize{$-50$}}}%
+      \csname LTb\endcsname%
+      \put(6896,5414){\makebox(0,0){\strut{}\footnotesize{$-40$}}}%
+      \csname LTb\endcsname%
+      \put(7560,5414){\makebox(0,0){\strut{}\footnotesize{$-30$}}}%
+      \csname LTb\endcsname%
+      \put(8223,5414){\makebox(0,0){\strut{}\footnotesize{$-20$}}}%
+      \csname LTb\endcsname%
+      \put(8887,5414){\makebox(0,0){\strut{}\footnotesize{$-10$}}}%
+      \csname LTb\endcsname%
+      \put(9551,5414){\makebox(0,0){\strut{}\footnotesize{$0$}}}%
+    }%
+    \gplgaddtomacro\gplfronttext{%
+      \csname LTb\endcsname%
+      \put(5128,7526){\rotatebox{-270}{\makebox(0,0){\strut{}\footnotesize{SNR [dB]}}}}%
+      \put(7559,5194){\makebox(0,0){\strut{}\footnotesize{input [dB]}}}%
+      \put(7559,9749){\makebox(0,0){\strut{}\shortstack{16-bit Fixed Point \\QPSK Q1.15}}}%
+      \csname LTb\endcsname%
+      \put(5700,6467){\makebox(0,0)[l]{\strut{}\tiny{FFT64}}}%
+      \csname LTb\endcsname%
+      \put(5700,6247){\makebox(0,0)[l]{\strut{}\tiny{FFT256}}}%
+      \csname LTb\endcsname%
+      \put(5700,6027){\makebox(0,0)[l]{\strut{}\tiny{FFT1024}}}%
+      \csname LTb\endcsname%
+      \put(5700,5807){\makebox(0,0)[l]{\strut{}\tiny{FFT4096}}}%
+    }%
+    \gplgaddtomacro\gplbacktext{%
+      \csname LTb\endcsname%
+      \put(396,594){\makebox(0,0)[r]{\strut{}\footnotesize{$0$}}}%
+      \csname LTb\endcsname%
+      \put(396,1067){\makebox(0,0)[r]{\strut{}\footnotesize{$10$}}}%
+      \csname LTb\endcsname%
+      \put(396,1541){\makebox(0,0)[r]{\strut{}\footnotesize{$20$}}}%
+      \csname LTb\endcsname%
+      \put(396,2014){\makebox(0,0)[r]{\strut{}\footnotesize{$30$}}}%
+      \csname LTb\endcsname%
+      \put(396,2487){\makebox(0,0)[r]{\strut{}\footnotesize{$40$}}}%
+      \csname LTb\endcsname%
+      \put(396,2960){\makebox(0,0)[r]{\strut{}\footnotesize{$50$}}}%
+      \csname LTb\endcsname%
+      \put(396,3434){\makebox(0,0)[r]{\strut{}\footnotesize{$60$}}}%
+      \csname LTb\endcsname%
+      \put(396,3907){\makebox(0,0)[r]{\strut{}\footnotesize{$70$}}}%
+      \csname LTb\endcsname%
+      \put(396,4380){\makebox(0,0)[r]{\strut{}\footnotesize{$80$}}}%
+      \csname LTb\endcsname%
+      \put(528,374){\makebox(0,0){\strut{}\footnotesize{$-60$}}}%
+      \csname LTb\endcsname%
+      \put(1192,374){\makebox(0,0){\strut{}\footnotesize{$-50$}}}%
+      \csname LTb\endcsname%
+      \put(1856,374){\makebox(0,0){\strut{}\footnotesize{$-40$}}}%
+      \csname LTb\endcsname%
+      \put(2520,374){\makebox(0,0){\strut{}\footnotesize{$-30$}}}%
+      \csname LTb\endcsname%
+      \put(3183,374){\makebox(0,0){\strut{}\footnotesize{$-20$}}}%
+      \csname LTb\endcsname%
+      \put(3847,374){\makebox(0,0){\strut{}\footnotesize{$-10$}}}%
+      \csname LTb\endcsname%
+      \put(4511,374){\makebox(0,0){\strut{}\footnotesize{$0$}}}%
+    }%
+    \gplgaddtomacro\gplfronttext{%
+      \csname LTb\endcsname%
+      \put(88,2487){\rotatebox{-270}{\makebox(0,0){\strut{}\footnotesize{SNR [dB]}}}}%
+      \put(2519,154){\makebox(0,0){\strut{}\footnotesize{input [dB]}}}%
+      \put(2519,4710){\makebox(0,0){\strut{}\shortstack{16-bit Fixed Point \\16QAM Q1.15}}}%
+      \csname LTb\endcsname%
+      \put(660,1427){\makebox(0,0)[l]{\strut{}\tiny{FFT64}}}%
+      \csname LTb\endcsname%
+      \put(660,1207){\makebox(0,0)[l]{\strut{}\tiny{FFT256}}}%
+      \csname LTb\endcsname%
+      \put(660,987){\makebox(0,0)[l]{\strut{}\tiny{FFT1024}}}%
+      \csname LTb\endcsname%
+      \put(660,767){\makebox(0,0)[l]{\strut{}\tiny{FFT4096}}}%
+    }%
+    \gplgaddtomacro\gplbacktext{%
+      \csname LTb\endcsname%
+      \put(5436,594){\makebox(0,0)[r]{\strut{}\footnotesize{$0$}}}%
+      \csname LTb\endcsname%
+      \put(5436,1067){\makebox(0,0)[r]{\strut{}\footnotesize{$10$}}}%
+      \csname LTb\endcsname%
+      \put(5436,1541){\makebox(0,0)[r]{\strut{}\footnotesize{$20$}}}%
+      \csname LTb\endcsname%
+      \put(5436,2014){\makebox(0,0)[r]{\strut{}\footnotesize{$30$}}}%
+      \csname LTb\endcsname%
+      \put(5436,2487){\makebox(0,0)[r]{\strut{}\footnotesize{$40$}}}%
+      \csname LTb\endcsname%
+      \put(5436,2960){\makebox(0,0)[r]{\strut{}\footnotesize{$50$}}}%
+      \csname LTb\endcsname%
+      \put(5436,3434){\makebox(0,0)[r]{\strut{}\footnotesize{$60$}}}%
+      \csname LTb\endcsname%
+      \put(5436,3907){\makebox(0,0)[r]{\strut{}\footnotesize{$70$}}}%
+      \csname LTb\endcsname%
+      \put(5436,4380){\makebox(0,0)[r]{\strut{}\footnotesize{$80$}}}%
+      \csname LTb\endcsname%
+      \put(5568,374){\makebox(0,0){\strut{}\footnotesize{$-60$}}}%
+      \csname LTb\endcsname%
+      \put(6232,374){\makebox(0,0){\strut{}\footnotesize{$-50$}}}%
+      \csname LTb\endcsname%
+      \put(6896,374){\makebox(0,0){\strut{}\footnotesize{$-40$}}}%
+      \csname LTb\endcsname%
+      \put(7560,374){\makebox(0,0){\strut{}\footnotesize{$-30$}}}%
+      \csname LTb\endcsname%
+      \put(8223,374){\makebox(0,0){\strut{}\footnotesize{$-20$}}}%
+      \csname LTb\endcsname%
+      \put(8887,374){\makebox(0,0){\strut{}\footnotesize{$-10$}}}%
+      \csname LTb\endcsname%
+      \put(9551,374){\makebox(0,0){\strut{}\footnotesize{$0$}}}%
+    }%
+    \gplgaddtomacro\gplfronttext{%
+      \csname LTb\endcsname%
+      \put(5128,2487){\rotatebox{-270}{\makebox(0,0){\strut{}\footnotesize{SNR [dB]}}}}%
+      \put(7559,154){\makebox(0,0){\strut{}\footnotesize{input [dB]}}}%
+      \put(7559,4710){\makebox(0,0){\strut{}\shortstack{16-bit Fixed Point \\Gaussian White Noise Q1.15}}}%
+      \csname LTb\endcsname%
+      \put(5700,1427){\makebox(0,0)[l]{\strut{}\tiny{FFT64}}}%
+      \csname LTb\endcsname%
+      \put(5700,1207){\makebox(0,0)[l]{\strut{}\tiny{FFT256}}}%
+      \csname LTb\endcsname%
+      \put(5700,987){\makebox(0,0)[l]{\strut{}\tiny{FFT1024}}}%
+      \csname LTb\endcsname%
+      \put(5700,767){\makebox(0,0)[l]{\strut{}\tiny{FFT4096}}}%
+    }%
+    \gplbacktext
+    \put(0,0){\includegraphics{fourplot}}%
+    \gplfronttext
+  \end{picture}%
+\endgroup

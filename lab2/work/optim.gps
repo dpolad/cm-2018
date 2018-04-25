@@ -1,0 +1,26 @@
+set terminal epslatex size 7,5.24 color colortext
+set output 'optim.tex'
+
+set title '\Large{\shortstack{ Scalar vs Intrinsics Compilation on 16-bit Fixed Point Complex Multiplication\\ Average on 500000 iterations}}' offset 0,0.5
+set xlabel '\LARGE{input size [bytes]}'
+set ylabel '\LARGE{clock cycles}'
+set format y '\LARGE{$10^{%L}$}'
+set format x '\LARGE{$%h$}'
+set lmargin 4
+set rmargin 4
+set xlabel offset 0,-1
+
+set key bottom right spacing 1.0 width -4
+
+set grid
+set xrange [0:8320]
+set xtics 1024 offset 0, -0.5
+set logscale y 
+
+plot "0_res_0_1.txt" using 1:4 w lines ls 1 lw 3 title '\normalsize{O0 SCALAR CMPLX STRUCT}', \
+     "0_res_2_1.txt" using 1:4 w lines ls 4 lw 3 title '\normalsize{O0 AVX2 CMPLX STRUCT}', \
+     "2_res_0_1.txt" using 1:4 w lines ls 1 dashtype 3 lw 3 title '\normalsize{O2 SCALAR CMPLX STRUCT}', \
+     "2_res_2_1.txt" using 1:4 w lines ls 4 dashtype 3 lw 3 title '\normalsize{O2 AVX2 CMPLX STRUCT}', \
+     "3_res_0_1.txt" using 1:4 w lines ls 1 dashtype 5 lw 3 title '\normalsize{O3 SCALAR CMPLX STRUCT}', \
+     "3_res_2_1.txt" using 1:4 w lines ls 4 dashtype 5 lw 3 title '\normalsize{O3 AVX2 CMPLX STRUCT}',
+

@@ -1,0 +1,26 @@
+set terminal epslatex size 7,5.24 color colortext
+set output 'complex.tex'
+
+set title '\Large{\shortstack{Data Structure Comparison on 16-bit Fixed Point Complex Multiplication\\ O3 Optimization - Average on 500000 iterations}}' offset 0,0.5
+set xlabel '\LARGE{input size [bytes]}'
+set ylabel '\LARGE{clock cycles}'
+set format y '\LARGE{$%h$}'
+set format x '\LARGE{$%h$}'
+set lmargin 4
+set rmargin 4
+set xlabel offset 0,-1
+
+set key top left spacing 1.0 width -1
+
+set grid
+set xrange [0:8320]
+set yrange [0:10000]
+set xtics 1024 offset 0, -0.5
+
+plot "3_res_0_1.txt" using 1:4 w lines ls 1 lw 3 title '\normalsize{O3 SCALAR CMPLX STRUCT}', \
+     "3_res_1_1.txt" using 1:4 w lines ls 4 lw 3 title '\normalsize{O3 SSE4 CMPLX STRUCT}', \
+     "3_res_2_1.txt" using 1:4 w lines ls 3 lw 3 title '\normalsize{O3 AVX2 CMPLX STRUCT}', \
+     "3_res_0_2.txt" using 1:4 w lines ls 1 dashtype 3 lw 3 title '\normalsize{O3 SCALAR CMPLX ARRAY}', \
+     "3_res_1_2.txt" using 1:4 w lines ls 4 dashtype 3 lw 3 title '\normalsize{O3 SSE4 CMPLX ARRAY}', \
+     "3_res_2_2.txt" using 1:4 w lines ls 3 dashtype 3 lw 3 title '\normalsize{O3 AVX2 CMPLX ARRAY}',
+

@@ -1,0 +1,15 @@
+[0] Config.pm:302> INFO - This is Biber 2.10
+[0] Config.pm:305> INFO - Logfile is 'template_Report.blg'
+[25] biber:313> INFO - === Wed Apr 25, 2018, 14:49:07
+[44] Biber.pm:371> INFO - Reading 'template_Report.bcf'
+[112] Biber.pm:857> INFO - Found 8 citekeys in bib section 0
+[124] Biber.pm:3976> INFO - Processing section 0
+[133] Biber.pm:4136> INFO - Looking for bibtex format file 'template_Report.bib' for section 0
+[134] bibtex.pm:1490> INFO - LaTeX decoding ...
+[139] bibtex.pm:1306> INFO - Found BibTeX data source 'template_Report.bib'
+[165] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[165] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[165] Biber.pm:3804> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'en-US'
+[165] Biber.pm:3810> INFO - No sort tailoring available for locale 'en-US'
+[175] bbl.pm:617> INFO - Writing 'template_Report.bbl' with encoding 'UTF-8'
+[177] bbl.pm:720> INFO - Output to template_Report.bbl

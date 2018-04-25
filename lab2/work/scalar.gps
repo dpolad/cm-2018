@@ -1,0 +1,29 @@
+set terminal epslatex size 7,5.24 color colortext
+set output 'scalar.tex'
+
+set title '\Large{\shortstack{Compiler Comparison on 16-bit Fixed Point Real Multiplication\\ Average on 500000 iterations}}' offset 0,0.5
+set xlabel '\LARGE{input size [bytes]}'
+set ylabel '\LARGE{clock cycles}'
+set format y '\LARGE{$10^{%L}$}'
+set format x '\LARGE{$%h$}'
+set lmargin 4
+set rmargin 4
+set xlabel offset 0,-1
+
+set key bottom right spacing 1.0 width -4
+
+set grid
+set xrange [0:8320]
+set xtics 1024 offset 0, -0.5
+set logscale y 
+
+plot "0_res_0_0.txt" using 1:4 w lines ls 1 lw 3 title '\normalsize{O0 SCALAR REAL}', \
+     "0_res_1_0.txt" using 1:4 w lines ls 4 lw 3 title '\normalsize{O0 SSE4 REAL}', \
+     "0_res_2_0.txt" using 1:4 w lines ls 3 lw 3 title '\normalsize{O0 AVX2 REAL}', \
+     "2_res_0_0.txt" using 1:4 w lines ls 1 dashtype 3 lw 3 title '\normalsize{O2 SCALAR REAL}', \
+     "2_res_1_0.txt" using 1:4 w lines ls 4 dashtype 3 lw 3 title '\normalsize{O2 SSE4 REAL}', \
+     "2_res_2_0.txt" using 1:4 w lines ls 3 dashtype 3 lw 3 title '\normalsize{O2 AVX2 REAL}', \
+     "3_res_0_0.txt" using 1:4 w lines ls 1 dashtype 5 lw 3 title '\normalsize{O3 SCALAR REAL}', \
+     "3_res_1_0.txt" using 1:4 w lines ls 4 dashtype 5 lw 3 title '\normalsize{O3 SSE4 REAL}', \
+     "3_res_2_0.txt" using 1:4 w lines ls 3 dashtype 5 lw 3 title '\normalsize{O3 AVX2 REAL}',
+

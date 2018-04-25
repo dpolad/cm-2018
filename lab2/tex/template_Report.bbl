@@ -1,0 +1,159 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 2.9 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nty/global//global/global}
+    \entry{LIBPFC}{online}{}
+      \name{author}{1}{}{%
+        {{hash=db3a80302875272f04141b2b83a55955}{%
+           family={Bilaniuk},
+           familyi={B\bibinitperiod},
+           given={O.},
+           giveni={O\bibinitperiod}}}%
+      }
+      \strng{namehash}{db3a80302875272f04141b2b83a55955}
+      \strng{fullhash}{db3a80302875272f04141b2b83a55955}
+      \strng{bibnamehash}{db3a80302875272f04141b2b83a55955}
+      \strng{authorbibnamehash}{db3a80302875272f04141b2b83a55955}
+      \strng{authornamehash}{db3a80302875272f04141b2b83a55955}
+      \strng{authorfullhash}{db3a80302875272f04141b2b83a55955}
+      \field{sortinit}{B}
+      \field{sortinithash}{276475738cc058478c1677046f857703}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{libpfc - A small library and kernel module for easy access to x86 performance monitor counters under Linux}
+      \verb{urlraw}
+      \verb https://github.com/obilaniu/libpfc
+      \endverb
+      \verb{url}
+      \verb https://github.com/obilaniu/libpfc
+      \endverb
+    \endentry
+    \entry{ALIAS}{online}{}
+      \name{author}{1}{}{%
+        {{hash=65ec5ce899da36f84661f1bb5da49270}{%
+           family={Cook},
+           familyi={C\bibinitperiod},
+           given={D.},
+           giveni={D\bibinitperiod}}}%
+      }
+      \strng{namehash}{65ec5ce899da36f84661f1bb5da49270}
+      \strng{fullhash}{65ec5ce899da36f84661f1bb5da49270}
+      \strng{bibnamehash}{65ec5ce899da36f84661f1bb5da49270}
+      \strng{authorbibnamehash}{65ec5ce899da36f84661f1bb5da49270}
+      \strng{authornamehash}{65ec5ce899da36f84661f1bb5da49270}
+      \strng{authorfullhash}{65ec5ce899da36f84661f1bb5da49270}
+      \field{sortinit}{C}
+      \field{sortinithash}{963e9d84a3da2344e8833203de5aed05}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{8}
+      \field{title}{Performance Implications of Pointer Aliasing}
+      \field{year}{1997}
+      \field{dateera}{ce}
+      \verb{urlraw}
+      \verb ftp://ftp.sgi.com/sgi/audio/audio.apps/dev/aliasing.html
+      \endverb
+      \verb{url}
+      \verb ftp://ftp.sgi.com/sgi/audio/audio.apps/dev/aliasing.html
+      \endverb
+    \endentry
+    \entry{TSC}{manual}{}
+      \field{sortinit}{I}
+      \field{sortinithash}{320bc8fe8101b9376f9f21cd507de0e8}
+      \field{labeltitlesource}{title}
+      \field{chapter}{17.17}
+      \field{month}{3}
+      \field{title}{Intel® 64 and IA-32 Architectures Software Developer’s Manual, Vol 3A}
+      \field{year}{2018}
+      \field{dateera}{ce}
+      \verb{urlraw}
+      \verb https://software.intel.com/sites/default/files/managed/39/c5/325462-sdm-vol-1-2abcd-3abcd.pdf
+      \endverb
+      \verb{url}
+      \verb https://software.intel.com/sites/default/files/managed/39/c5/325462-sdm-vol-1-2abcd-3abcd.pdf
+      \endverb
+    \endentry
+    \entry{4510u}{online}{}
+      \field{sortinit}{I}
+      \field{sortinithash}{320bc8fe8101b9376f9f21cd507de0e8}
+      \field{labeltitlesource}{title}
+      \field{month}{4}
+      \field{title}{Intel® Core™ i7-4510U Processor}
+      \field{year}{2014}
+      \field{dateera}{ce}
+      \verb{urlraw}
+      \verb https://ark.intel.com/products/81015/Intel-Core-i7-4510U-Processor-4M-Cache-up-to-3_10-GHz
+      \endverb
+      \verb{url}
+      \verb https://ark.intel.com/products/81015/Intel-Core-i7-4510U-Processor-4M-Cache-up-to-3_10-GHz
+      \endverb
+    \endentry
+    \entry{IIG}{online}{}
+      \field{sortinit}{I}
+      \field{sortinithash}{320bc8fe8101b9376f9f21cd507de0e8}
+      \field{labeltitlesource}{title}
+      \field{title}{Intel® Intrinsics Guide}
+      \verb{urlraw}
+      \verb https://software.intel.com/sites/landingpage/IntrinsicsGuide/
+      \endverb
+      \verb{url}
+      \verb https://software.intel.com/sites/landingpage/IntrinsicsGuide/
+      \endverb
+    \endentry
+    \entry{ISOLCPU}{online}{}
+      \field{sortinit}{T}
+      \field{sortinithash}{6f7aff9db9dcfeb7f95fd5bbd2f78df9}
+      \field{labeltitlesource}{title}
+      \field{title}{The kernel’s command-line parameters}
+      \verb{urlraw}
+      \verb https://www.kernel.org/doc/html/v4.14/admin-guide/kernel-parameters.html
+      \endverb
+      \verb{url}
+      \verb https://www.kernel.org/doc/html/v4.14/admin-guide/kernel-parameters.html
+      \endverb
+    \endentry
+    \entry{SCHEDU}{online}{}
+      \field{sortinit}{T}
+      \field{sortinithash}{6f7aff9db9dcfeb7f95fd5bbd2f78df9}
+      \field{labeltitlesource}{title}
+      \field{title}{Tuning the Task Scheduler}
+      \verb{urlraw}
+      \verb https://doc.opensuse.org/documentation/leap/tuning/html/book.sle.tuning/cha.tuning.taskscheduler.html
+      \endverb
+      \verb{url}
+      \verb https://doc.opensuse.org/documentation/leap/tuning/html/book.sle.tuning/cha.tuning.taskscheduler.html
+      \endverb
+    \endentry
+    \entry{GCCOPT}{online}{}
+      \field{sortinit}{U}
+      \field{sortinithash}{36a2444f5238e0dcf4bb59704df6624d}
+      \field{labeltitlesource}{title}
+      \field{title}{Using the GNU Compiler Collection (GCC): Optimize Options}
+      \verb{urlraw}
+      \verb https://gcc.gnu.org/onlinedocs/gcc/Optimize-Options.html
+      \endverb
+      \verb{url}
+      \verb https://gcc.gnu.org/onlinedocs/gcc/Optimize-Options.html
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

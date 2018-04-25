@@ -1,22 +1,16 @@
 CC = gcc
 
-CFLAGS = -Wall -mmmx -msse -msse2 -mssse3 -msse4 -mavx -march=native -fopenmp
+CFLAGS = -Wall -mmmx -msse -msse2 -mssse3 -msse4 -mavx -march=native -fopt-info-vec -flto
 
 # Utility routines
 
-all: lab2.o lab2_omp.o
+all: lab2.o 
 
 lab2.o: lab2.c 
-	$(CC) $(CFLAGS) -O0 $< -o 0_$@ 
-	$(CC) $(CFLAGS) -O1 $< -o 1_$@ 
-	$(CC) $(CFLAGS) -O2 $< -o 2_$@ 
-	$(CC) $(CFLAGS) -O3 $< -o 3_$@ 
-
-lab2_omp.o: lab2_omp.c 
-	$(CC) $(CFLAGS) -DOMP -O0 $< -o 0_$@ 
-	$(CC) $(CFLAGS) -DOMP -O1 $< -o 1_$@ 
-	$(CC) $(CFLAGS) -DOMP -O2 $< -o 2_$@ 
-	$(CC) $(CFLAGS) -DOMP -O3 $< -o 3_$@ 
+	$(CC) $(CFLAGS) -I /home/davide/libpfc/include -O0 $< -o 0_$@ -Wl,-L/home/davide/libpfc/build/src,-lpfc
+	$(CC) $(CFLAGS) -I /home/davide/libpfc/include -O1 $< -o 1_$@ -Wl,-L/home/davide/libpfc/build/src,-lpfc 
+	$(CC) $(CFLAGS) -I /home/davide/libpfc/include -O2 $< -o 2_$@ -Wl,-L/home/davide/libpfc/build/src,-lpfc 
+	$(CC) $(CFLAGS) -I /home/davide/libpfc/include -O3 $< -o 3_$@ -Wl,-L/home/davide/libpfc/build/src,-lpfc 
 
 dump: lab2.o
 	objdump -D lab2.o
